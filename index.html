@@ -168,6 +168,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
 .toast.success{background:var(--success-bg);color:var(--success);border-left:4px solid var(--success);}
 .toast.error{background:var(--danger-bg);color:var(--danger);border-left:4px solid var(--danger);}
 .toast.info{background:var(--blue-light);color:var(--blue);border-left:4px solid var(--blue);}
+.toast.warning{background:var(--gold-pale);color:var(--gold);border-left:4px solid var(--gold);}
 .toast.show{transform:translateX(0);}
 
 /* ADMIN DASHBOARD */
@@ -211,10 +212,120 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
 .filter-bar{display:flex;gap:10px;align-items:center;}
 .filter-bar select,.filter-bar input{padding:8px 12px;border:1.5px solid var(--gray-100);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:13px;background:var(--white);color:var(--text);outline:none;}
 .filter-bar select:focus,.filter-bar input:focus{border-color:var(--gold);}
+.date-range-group{display:flex;align-items:center;gap:6px;background:var(--gold-pale);border:1.5px solid rgba(184,148,31,0.25);border-radius:var(--radius-sm);padding:4px 10px;}
+.date-range-group label{font-size:11px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap;}
+.date-range-group input[type=date]{padding:4px 8px;border:1px solid rgba(184,148,31,0.3);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12px;background:var(--white);color:var(--text);outline:none;cursor:pointer;}
+.date-range-group input[type=date]:focus{border-color:var(--gold);}
+.btn-date-clear{padding:4px 10px;background:transparent;border:1px solid rgba(184,148,31,0.4);border-radius:6px;font-size:11px;font-weight:600;color:var(--gold);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;white-space:nowrap;}
+.btn-date-clear:hover{background:var(--gold);color:var(--white);}
+.section-date-filter{display:flex;align-items:center;gap:10px;background:var(--gold-pale);border:1.5px solid rgba(184,148,31,0.2);border-radius:var(--radius-sm);padding:10px 16px;margin-bottom:20px;flex-wrap:wrap;}
+.section-date-filter label{font-size:12px;font-weight:600;color:var(--navy);white-space:nowrap;}
+.section-date-filter input[type=date]{padding:6px 10px;border:1.5px solid rgba(184,148,31,0.3);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12.5px;background:var(--white);color:var(--text);outline:none;cursor:pointer;}
+.section-date-filter input[type=date]:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(184,148,31,0.12);}
+.section-date-filter .filter-label{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.7px;padding:4px 10px;background:var(--gold);color:var(--white);border-radius:12px;}
+.subtotal-bar{background:linear-gradient(135deg,var(--navy),var(--navy-mid));border-radius:var(--radius-sm);padding:14px 22px;margin-top:0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.subtotal-bar .sub-item{display:flex;flex-direction:column;align-items:center;}
+.subtotal-bar .sub-label{font-size:10px;font-weight:600;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:2px;}
+.subtotal-bar .sub-value{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--gold-light);}
+.subtotal-bar .sub-divider{width:1px;height:36px;background:rgba(255,255,255,0.15);}
+.subtotal-row td{background:var(--navy)!important;color:var(--white)!important;font-weight:700;font-size:12.5px;border-bottom:none!important;}
+.subtotal-row td strong{color:var(--gold-light);}
+.active-filter-badge{display:inline-flex;align-items:center;gap:5px;background:var(--gold);color:var(--white);border-radius:12px;padding:3px 10px;font-size:11px;font-weight:600;}
 .admin-tbl-wrap{background:var(--white);border-radius:var(--radius-lg);border:1px solid var(--gray-100);overflow:hidden;box-shadow:var(--shadow-sm);}
 .admin-tbl-hdr{padding:16px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--gray-100);}
 .admin-tbl-hdr h4{font-family:'Playfair Display',serif;font-size:16px;color:var(--navy);}
 .pie-svg{flex-shrink:0;}
+
+/* ===== STUDENT REGISTRATION SCREEN ===== */
+#studentScreen{background:var(--off-white);}
+.stu-body{flex:1;overflow-y:auto;padding:32px 36px 60px;}
+.stu-layout{display:grid;grid-template-columns:420px 1fr;gap:28px;max-width:1200px;margin:0 auto;}
+.stu-form-card{background:var(--white);border-radius:var(--radius-lg);padding:30px;box-shadow:var(--shadow-sm);border:1px solid var(--gray-100);height:fit-content;}
+.stu-form-card h3{font-family:'Playfair Display',serif;font-size:19px;color:var(--navy);margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;gap:10px;}
+.stu-id-badge{background:var(--gold-pale);border:1px solid rgba(184,148,31,0.3);border-radius:8px;padding:8px 14px;font-size:12px;font-weight:600;color:var(--gold);display:flex;align-items:center;gap:6px;margin-bottom:18px;}
+.btn-stu-save{width:100%;padding:13px;background:linear-gradient(135deg,var(--gold),var(--gold-mid));color:var(--white);border:none;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;margin-top:16px;}
+.btn-stu-save:hover{box-shadow:0 4px 16px rgba(184,148,31,0.35);transform:translateY(-1px);}
+.btn-stu-reset{width:100%;padding:10px;background:var(--gray-50);color:var(--gray-700);border:1.5px solid var(--gray-100);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s;margin-top:8px;}
+.btn-stu-reset:hover{border-color:var(--danger);color:var(--danger);background:var(--danger-bg);}
+.stu-list-card{background:var(--white);border-radius:var(--radius-lg);border:1px solid var(--gray-100);overflow:hidden;box-shadow:var(--shadow-sm);}
+.stu-list-hdr{padding:16px 22px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.stu-list-hdr h4{font-family:'Playfair Display',serif;font-size:16px;color:var(--navy);}
+.stu-search-box{display:flex;align-items:center;gap:8px;background:var(--gray-50);border:1.5px solid var(--gray-100);border-radius:var(--radius-sm);padding:7px 12px;flex:1;max-width:280px;}
+.stu-search-box input{border:none;background:transparent;outline:none;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text);flex:1;}
+.stu-tbl{width:100%;border-collapse:collapse;font-size:12.5px;}
+.stu-tbl th{background:var(--navy);color:var(--white);padding:10px 15px;text-align:left;font-size:10.5px;font-weight:600;letter-spacing:0.4px;}
+.stu-tbl td{padding:10px 15px;border-bottom:0.5px solid var(--gray-100);color:var(--gray-700);}
+.stu-tbl tr:last-child td{border-bottom:none;}
+.stu-tbl tr:hover td{background:var(--gray-50);}
+.stu-id-chip{font-family:monospace;font-size:11px;background:var(--navy);color:var(--gold-light);padding:3px 8px;border-radius:6px;letter-spacing:0.5px;}
+.fees-chip{font-size:11px;font-weight:700;color:var(--success);background:var(--success-bg);padding:3px 9px;border-radius:10px;}
+
+/* ===== STUDENT SEARCH AUTOCOMPLETE (Invoice screen) ===== */
+.stu-search-wrap{position:relative;width:100%;}
+.stu-search-input-row{display:flex;align-items:center;gap:8px;}
+.stu-search-wrap input{width:100%;padding:10px 13px;font-size:13.5px;border:1.5px solid var(--gray-100);border-radius:var(--radius-sm);background:var(--gray-50);transition:all 0.2s;outline:none;font-family:'DM Sans',sans-serif;color:var(--text);}
+.stu-search-wrap input:focus{border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(184,148,31,0.08);}
+.stu-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--white);border:1.5px solid var(--gold);border-radius:var(--radius-sm);box-shadow:var(--shadow-lg);z-index:200;max-height:240px;overflow-y:auto;display:none;}
+.stu-dropdown.open{display:block;}
+.stu-dropdown-item{padding:10px 14px;cursor:pointer;border-bottom:0.5px solid var(--gray-100);transition:background 0.15s;}
+.stu-dropdown-item:last-child{border-bottom:none;}
+.stu-dropdown-item:hover,.stu-dropdown-item.active{background:var(--gold-pale);}
+.stu-dropdown-item .sdi-name{font-size:13px;font-weight:600;color:var(--navy);}
+.stu-dropdown-item .sdi-meta{font-size:11px;color:var(--gray-400);margin-top:2px;}
+.stu-dropdown-empty{padding:14px;text-align:center;color:var(--gray-400);font-size:13px;}
+.stu-filled-badge{display:inline-flex;align-items:center;gap:5px;background:var(--success-bg);color:var(--success);border-radius:10px;padding:3px 10px;font-size:11px;font-weight:600;margin-left:8px;}
+.stu-clear-btn{padding:6px 10px;background:var(--danger-bg);color:var(--danger);border:1px solid rgba(192,57,43,0.2);border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;flex-shrink:0;}
+.stu-clear-btn:hover{background:var(--danger);color:var(--white);}
+.linked-student-bar{background:var(--success-bg);border:1px solid rgba(27,138,79,0.25);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.linked-student-bar .lsb-id{font-family:monospace;font-size:11px;background:var(--navy);color:var(--gold-light);padding:2px 8px;border-radius:5px;}
+.linked-student-bar .lsb-fees{font-size:12px;font-weight:700;color:var(--success);}
+.linked-student-bar .lsb-pending{font-size:11px;color:var(--danger);font-weight:600;}
+
+/* ===== LEDGER SCREEN ===== */
+#ledgerScreen{background:var(--off-white);}
+.ledger-body{flex:1;overflow-y:auto;padding:32px 36px 60px;max-width:1300px;margin:0 auto;width:100%;}
+.ledger-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+.ledger-hdr h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);}
+.ledger-filter-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.ledger-filter-bar select,.ledger-filter-bar input{padding:8px 13px;border:1.5px solid var(--gray-100);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:13px;background:var(--white);color:var(--text);outline:none;}
+.ledger-filter-bar select:focus,.ledger-filter-bar input:focus{border-color:var(--gold);}
+.ledger-kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
+.ledger-card-wrap{background:var(--white);border-radius:var(--radius-lg);border:1px solid var(--gray-100);overflow:hidden;box-shadow:var(--shadow-sm);}
+.ledger-card-hdr{padding:14px 20px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between;}
+.ledger-card-hdr h4{font-family:'Playfair Display',serif;font-size:16px;color:var(--navy);}
+.ledger-tbl{width:100%;border-collapse:collapse;font-size:12.5px;}
+.ledger-tbl th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-size:10.5px;font-weight:600;letter-spacing:0.4px;}
+.ledger-tbl td{padding:10px 14px;border-bottom:0.5px solid var(--gray-100);color:var(--gray-700);vertical-align:middle;}
+.ledger-tbl tr:last-child td{border-bottom:none;}
+.ledger-tbl tr:hover td{background:var(--gray-50);}
+.pending-amt{font-weight:700;color:var(--danger);}
+.paid-amt{font-weight:700;color:var(--success);}
+.progress-track{background:var(--gray-100);border-radius:10px;height:7px;overflow:hidden;min-width:80px;}
+.progress-fill{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--success),#4CAF50);transition:width 0.5s ease;}
+.progress-fill.partial{background:linear-gradient(90deg,var(--gold),var(--gold-light));}
+.progress-fill.overdue{background:linear-gradient(90deg,var(--danger),#E74C3C);}
+.badge-paid{background:var(--success-bg);color:var(--success);border-radius:10px;padding:3px 10px;font-size:10.5px;font-weight:600;}
+.badge-partial{background:var(--gold-pale);color:var(--gold);border-radius:10px;padding:3px 10px;font-size:10.5px;font-weight:600;}
+.badge-pending{background:var(--danger-bg);color:var(--danger);border-radius:10px;padding:3px 10px;font-size:10.5px;font-weight:600;}
+.btn-view-ledger{padding:5px 12px;background:var(--blue-light);color:var(--blue);border:1px solid rgba(21,101,192,0.2);border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+.btn-view-ledger:hover{background:var(--blue);color:var(--white);}
+/* Ledger detail modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(13,27,62,0.5);z-index:900;display:none;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:var(--white);border-radius:var(--radius-lg);width:700px;max-width:95vw;max-height:88vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-lg);}
+.modal-hdr{padding:20px 26px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between;background:var(--navy);}
+.modal-hdr h3{font-family:'Playfair Display',serif;font-size:18px;color:var(--white);}
+.modal-close{background:rgba(255,255,255,0.1);border:none;color:var(--white);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.modal-close:hover{background:rgba(255,255,255,0.2);}
+.modal-body{padding:24px 26px;overflow-y:auto;flex:1;}
+.modal-stu-info{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.modal-info-item{background:var(--gray-50);border-radius:8px;padding:10px 14px;border:1px solid var(--gray-100);}
+.modal-info-item .mil{font-size:10px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:3px;}
+.modal-info-item .miv{font-size:13.5px;font-weight:600;color:var(--navy);}
+.modal-ledger-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+.mls-item{background:var(--white);border-radius:var(--radius-sm);padding:12px 14px;text-align:center;border:1px solid var(--gray-100);}
+.mls-label{font-size:10px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:5px;}
+.mls-value{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;}
 
 /* LOADING STATE */
 .loading-overlay{position:fixed;inset:0;background:rgba(13,27,62,0.45);z-index:500;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;}
@@ -231,6 +342,31 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
   #printArea{position:fixed;inset:0;padding:30px;background:white;font-size:13px;}
   #printArea .inv-hdr-logo img{width:70px;height:70px;}
 }
+
+/* ===== PENDING TASKS SCREEN ===== */
+#tasksScreen{background:var(--off-white);}
+.tasks-body{flex:1;overflow-y:auto;padding:32px 36px 60px;max-width:1100px;margin:0 auto;width:100%;}
+.tasks-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+.tasks-hdr h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--navy);}
+.tasks-kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;}
+.task-card-wrap{background:var(--white);border-radius:var(--radius-lg);border:1px solid var(--gray-100);overflow:hidden;box-shadow:var(--shadow-sm);}
+.task-card-hdr{padding:14px 20px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.task-card-hdr h4{font-family:'Playfair Display',serif;font-size:16px;color:var(--navy);}
+.task-tbl{width:100%;border-collapse:collapse;font-size:12.5px;}
+.task-tbl th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-size:10.5px;font-weight:600;letter-spacing:0.4px;}
+.task-tbl td{padding:11px 14px;border-bottom:0.5px solid var(--gray-100);color:var(--gray-700);vertical-align:middle;}
+.task-tbl tr:last-child td{border-bottom:none;}
+.task-tbl tr:hover td{background:var(--gray-50);}
+.task-tbl tr.task-done td{opacity:0.45;text-decoration:line-through;}
+.task-tbl tr.task-done td .task-tick-btn{text-decoration:none;opacity:1;}
+.task-overdue{color:var(--danger);font-weight:700;}
+.task-today{color:var(--gold);font-weight:700;}
+.task-upcoming{color:var(--gray-700);}
+.task-tick-btn{width:26px;height:26px;border-radius:50%;border:2px solid var(--gray-200);background:var(--white);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:14px;transition:all 0.18s;flex-shrink:0;}
+.task-tick-btn:hover{border-color:var(--success);background:var(--success-bg);}
+.task-tick-btn.done{border-color:var(--success);background:var(--success);color:var(--white);}
+.inst-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:600;background:var(--gold-pale);color:var(--gold);border:1px solid rgba(184,148,31,0.25);}
+.overdue-row td{background:#FEF2F0!important;}
 </style>
 </head>
 <body>
@@ -246,16 +382,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
     <div class="form-group">
       <label>Sales Representative</label>
       <select id="userSelect">
-        <option value="">— Select your name —</option>
-        <optgroup label="Sales Representatives">
-          <option value="Laxmi">Laxmi (Sales)</option>
-          <option value="Anushka">Anushka (Sales)</option>
-          <option value="Deepak">Deepak (Sales)</option>
-        </optgroup>
-        <optgroup label="Admin">
-          <option value="Piyush">Piyush (Admin)</option>
-          <option value="Akshay">Akshay (Admin)</option>
-        </optgroup>
+        <option value="">— Loading users… —</option>
       </select>
     </div>
     <div class="form-group">
@@ -288,32 +415,52 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
   <div class="dash-body">
     <div class="dash-header">
       <h2>Welcome, <span id="dashGreeting"></span> 👋</h2>
-      <p>Select a module to create and manage invoices</p>
+      <p>Select a module to create invoices, register students, or view the ledger</p>
     </div>
-    <div class="modules-grid">
-      <div class="module-card" onclick="openModule('TradingHouse')">
-        <div class="module-icon">🏛️</div>
-        <div class="module-name">Trading House</div>
-        <div class="module-desc">Tax invoices for Trading House Education Pvt. Ltd. — includes GST breakdown</div>
-        <div class="module-arrow">→</div>
+    <div style="margin-bottom:18px;">
+      <div style="font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">📦 Invoice Modules</div>
+      <div class="modules-grid">
+        <div class="module-card" onclick="openModule('TradingHouse')">
+          <div class="module-icon">🏛️</div>
+          <div class="module-name">Trading House</div>
+          <div class="module-desc">Tax invoices for Trading House Education Pvt. Ltd. — includes GST breakdown</div>
+          <div class="module-arrow">→</div>
+        </div>
+        <div class="module-card" onclick="openModule('Akshay')">
+          <div class="module-icon">📋</div>
+          <div class="module-name">Akshay</div>
+          <div class="module-desc">Education service invoices for the Akshay division</div>
+          <div class="module-arrow">→</div>
+        </div>
+        <div class="module-card" onclick="openModule('Piyush')">
+          <div class="module-icon">⚖️</div>
+          <div class="module-name">Piyush</div>
+          <div class="module-desc">Legal consultancy invoices for the Piyush division</div>
+          <div class="module-arrow">→</div>
+        </div>
+        <div class="module-card" onclick="openModule('Victor')">
+          <div class="module-icon">💼</div>
+          <div class="module-name">Victor</div>
+          <div class="module-desc">Sales invoices for the Victor division</div>
+          <div class="module-arrow">→</div>
+        </div>
       </div>
-      <div class="module-card" onclick="openModule('Akshay')">
-        <div class="module-icon">📋</div>
-        <div class="module-name">Akshay</div>
-        <div class="module-desc">Education service invoices for the Akshay division</div>
-        <div class="module-arrow">→</div>
-      </div>
-      <div class="module-card" onclick="openModule('Piyush')">
-        <div class="module-icon">⚖️</div>
-        <div class="module-name">Piyush</div>
-        <div class="module-desc">Legal consultancy invoices for the Piyush division</div>
-        <div class="module-arrow">→</div>
-      </div>
-      <div class="module-card" onclick="openModule('Victor')">
-        <div class="module-icon">💼</div>
-        <div class="module-name">Victor</div>
-        <div class="module-desc">Sales invoices for the Victor division</div>
-        <div class="module-arrow">→</div>
+    </div>
+    <div style="margin-top:24px;">
+      <div style="font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">👨‍🎓 Student Management</div>
+      <div class="modules-grid" style="grid-template-columns:1fr 1fr;max-width:880px;">
+        <div class="module-card" onclick="openStudentScreen()" style="">
+          <div class="module-icon" style="background:#E8F5EE;color:#1B8A4F;">👨‍🎓</div>
+          <div class="module-name">Student Registration</div>
+          <div class="module-desc">Register new students with their name, mobile, email, batch, total fees, installment plan and unique student ID</div>
+          <div class="module-arrow">→</div>
+        </div>
+        <div class="module-card" onclick="openTasksScreen()" id="tasksDashCard">
+          <div class="module-icon" style="background:#FDF2E7;color:#B8500A;">📋</div>
+          <div class="module-name">Pending Tasks <span id="dashTaskBadge" style="display:none;background:var(--danger);color:var(--white);border-radius:10px;padding:2px 8px;font-size:11px;font-weight:700;margin-left:6px;"></span></div>
+          <div class="module-desc">View overdue and today's installment follow-up tasks assigned to you — tick them off when done</div>
+          <div class="module-arrow">→</div>
+        </div>
       </div>
     </div>
   </div>
@@ -341,6 +488,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
       <div>
         <div class="inv-form-card">
           <h3 id="formTitle">New Invoice</h3>
+
+          <!-- STUDENT SEARCH -->
+          <div style="margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--gray-100);">
+            <div style="font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;">🔍 Search Student</div>
+            <div class="stu-search-wrap">
+              <div class="stu-search-input-row">
+                <input type="text" id="stuSearchInput" placeholder="Type student name or ID to auto-fill…" oninput="onStudentSearch(this.value)" autocomplete="off" style="flex:1;">
+                <button class="stu-clear-btn" onclick="clearStudentLink()" id="stuClearBtn" style="display:none;">✕ Clear</button>
+              </div>
+              <div class="stu-dropdown" id="stuDropdown"></div>
+            </div>
+            <div class="linked-student-bar" id="linkedStudentBar" style="display:none;margin-top:10px;"></div>
+          </div>
+
           <div class="form-row">
             <div class="if-group">
               <label>Invoice Number</label>
@@ -425,6 +586,41 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
 </div>
 
 <!-- PRINT AREA (invisible, only rendered for print) -->
+<!-- ===== PENDING TASKS SCREEN ===== -->
+<div id="tasksScreen" class="screen">
+  <div class="topbar">
+    <div class="topbar-left">
+      <img class="topbar-logo" src="1779330596138_image.png" alt="Logo" onerror="this.style.display='none'">
+      <span class="topbar-title">📋 Pending Installment Tasks</span>
+    </div>
+    <div class="topbar-right">
+      <div class="esc-hint">Press <kbd>Esc</kbd> to go back</div>
+      <button class="btn-logout" onclick="goBack()">← Back</button>
+      <div class="user-badge">
+        <div class="user-avatar" id="taskAvatar">LX</div>
+        <span class="user-name" id="taskName">—</span>
+      </div>
+      <button class="btn-logout" onclick="doLogout()">Sign Out</button>
+    </div>
+  </div>
+  <div class="tasks-body">
+    <div class="tasks-hdr">
+      <h2>My Pending Tasks</h2>
+      <button onclick="openTasksScreen()" style="padding:8px 18px;background:var(--blue-light);color:var(--blue);border:1.5px solid rgba(21,101,192,0.2);border-radius:20px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;">🔄 Refresh</button>
+    </div>
+    <div class="tasks-kpi-row" id="tasksKpiRow"></div>
+    <div class="task-card-wrap">
+      <div class="task-card-hdr">
+        <h4>⏰ Overdue &amp; Today's Follow-ups</h4>
+        <span id="tasksCount" style="font-size:12px;color:var(--gray-400);"></span>
+      </div>
+      <div id="tasksTableBody">
+        <div class="empty-state">Loading tasks…</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="printArea" style="display:none;"></div>
 
 <!-- ===== ADMIN DASHBOARD SCREEN ===== -->
@@ -456,15 +652,226 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
   <div class="loading-txt" id="loadingTxt">Loading data from Google Sheets…</div>
 </div>
 
+<!-- ===== STUDENT REGISTRATION SCREEN ===== -->
+<div id="studentScreen" class="screen">
+  <div class="topbar">
+    <div class="topbar-left">
+      <img class="topbar-logo" src="1779330596138_image.png" alt="Logo" onerror="this.style.display='none'">
+      <span class="topbar-title">Student Registration</span>
+    </div>
+    <div class="topbar-right">
+      <div class="esc-hint">Press <kbd>Esc</kbd> to go back</div>
+      <button class="btn-logout" onclick="goBack()">← Back</button>
+      <div class="user-badge">
+        <div class="user-avatar" id="stuAvatar">LX</div>
+        <span class="user-name" id="stuName">—</span>
+      </div>
+      <button class="btn-logout" onclick="doLogout()">Sign Out</button>
+    </div>
+  </div>
+  <div class="stu-body">
+    <div class="stu-layout" id="stuLayoutGrid">
+      <!-- REGISTRATION FORM -->
+      <div>
+        <div class="stu-form-card">
+          <h3>👨‍🎓 <span id="stuFormTitle">New Student</span></h3>
+          <div class="stu-id-badge" id="stuIdPreview">🪪 Student ID will be auto-generated</div>
+          <div class="form-row full">
+            <div class="if-group">
+              <label>Full Name <span style="color:var(--danger);">*</span></label>
+              <input type="text" id="sfName" placeholder="Student full name" oninput="previewStuId()">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="if-group">
+              <label>Mobile Number <span style="color:var(--danger);">*</span></label>
+              <input type="tel" id="sfMobile" placeholder="10-digit mobile" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'').slice(0,10)">
+            </div>
+            <div class="if-group">
+              <label>Email ID</label>
+              <input type="email" id="sfEmail" placeholder="email@example.com">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="if-group">
+              <label>Registration Date <span style="color:var(--danger);">*</span></label>
+              <input type="date" id="sfRegDate">
+            </div>
+            <div class="if-group">
+              <label>Batch Code <span style="color:var(--danger);">*</span></label>
+              <select id="sfBatch">
+                <option value="">Select batch</option>
+                <option value="PTP">PTP</option>
+                <option value="UPTP">UPTP</option>
+                <option value="FTTP">FTTP</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row full">
+            <div class="if-group">
+              <label>Number of Installments <span style="color:var(--danger);">*</span></label>
+              <select id="sfInstallments">
+                <option value="1">1 (Full Payment)</option>
+                <option value="2">2 Installments</option>
+                <option value="3">3 Installments</option>
+                <option value="4">4 Installments</option>
+                <option value="5">5 Installments</option>
+                <option value="6">6 Installments</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row full">
+            <div class="if-group">
+              <label>Total Fees (₹) <span style="color:var(--danger);">*</span></label>
+              <input type="number" id="sfFees" placeholder="e.g. 50000" min="0">
+            </div>
+          </div>
+              <input type="text" id="sfNotes" placeholder="Optional notes about this student">
+            </div>
+          </div>
+          <button class="btn-stu-save" onclick="saveStudent()">✅ Register Student</button>
+          <button class="btn-stu-reset" onclick="resetStudentForm()">↩ Reset Form</button>
+        </div>
+      </div>
+      <!-- STUDENT LIST (admin-only — sales reps should not see every student's details) -->
+      <div id="stuListPanelWrap">
+        <div class="stu-list-card">
+          <div class="stu-list-hdr">
+            <h4>All Students <span id="stuCountBadge" style="font-size:12px;color:var(--gray-400);font-weight:400;"></span></h4>
+            <div class="stu-search-box">
+              <span style="color:var(--gray-400);">🔍</span>
+              <input type="text" placeholder="Search by name, mobile, ID…" oninput="renderStudentList(this.value)" id="stuListSearch">
+            </div>
+          </div>
+          <div id="stuListBody">
+            <div class="empty-state">No students registered yet.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LEDGER SCREEN ===== -->
+<div id="ledgerScreen" class="screen">
+  <div class="topbar">
+    <div class="topbar-left">
+      <img class="topbar-logo" src="1779330596138_image.png" alt="Logo" onerror="this.style.display='none'">
+      <span class="topbar-title">📒 Student Ledger</span>
+    </div>
+    <div class="topbar-right">
+      <div class="esc-hint">Press <kbd>Esc</kbd> to go back</div>
+      <button class="btn-logout" onclick="goBack()">← Back</button>
+      <div class="user-badge">
+        <div class="user-avatar" id="ledAvatar">LX</div>
+        <span class="user-name" id="ledName">—</span>
+      </div>
+      <button class="btn-logout" onclick="doLogout()">Sign Out</button>
+    </div>
+  </div>
+  <div class="ledger-body">
+    <div class="ledger-hdr">
+      <h2>Student Payment Ledger</h2>
+      <div class="ledger-filter-bar">
+        <input type="text" id="ledSearch" placeholder="🔍 Search name / ID…" oninput="renderLedger()" style="min-width:200px;">
+        <select id="ledBatchFilter" onchange="renderLedger()">
+          <option value="">All Batches</option>
+          <option value="PTP">PTP</option>
+          <option value="UPTP">UPTP</option>
+          <option value="FTTP">FTTP</option>
+        </select>
+        <select id="ledStatusFilter" onchange="renderLedger()">
+          <option value="">All Status</option>
+          <option value="paid">Fully Paid</option>
+          <option value="partial">Partial</option>
+          <option value="pending">No Payment</option>
+        </select>
+      </div>
+    </div>
+    <div class="ledger-kpi-row" id="ledgerKpiRow"></div>
+    <div class="ledger-card-wrap">
+      <div class="ledger-card-hdr">
+        <h4>Student-wise Fee Status</h4>
+        <span id="ledgerCount" style="font-size:12px;color:var(--gray-400);"></span>
+      </div>
+      <div id="ledgerTableBody"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LEDGER DETAIL MODAL -->
+<div class="modal-overlay" id="ledgerModal">
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <h3 id="modalStuName">Student Ledger</h3>
+      <button class="modal-close" onclick="closeLedgerModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
 <script>
 /*
   GAS BACKEND SETUP:
-  doPost  → Sales reps only: appends new invoice rows to the matching sheet tab.
-  doGet   → Admin only: fetches all rows via ?action=getAll. Read-only — no edits allowed from HTML.
+  doPost  → Sales reps: appends new invoice rows to the matching sheet tab.
+            Also used (by anyone registering a student) to append rows to the
+            "Students" tab, including the chosen installment count (1-6).
+  doGet   → Admin only: fetches all rows via ?action=getAll, including the
+            consolidated "Students" tab. Read-only — no edits allowed from HTML.
 */
-const USERS = {Laxmi:'Sales@123',Anushka:'Sales@123',Deepak:'Sales@123'};
-const ADMIN_USERS = {Piyush:'Admin@123',Akshay:'Admin@123'};
+// Passwords are loaded from the "Passwords" sheet in Google Sheets at login.
+// Expected columns: Username | Password | Role  (Role = "Admin" for admins)
+// These maps are populated by loadPasswords() before doLogin() runs.
+let USERS = {};
+let ADMIN_USERS = {};
 const EXCEL_PW = 'Victor@123';
+let passwordsLoaded = false;
+
+function loadPasswords(onDone){
+  const url = GAS_URL + '?action=getPasswords';
+  fetch(url,{method:'GET',redirect:'follow'})
+    .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.text();})
+    .then(text=>{
+      let data;
+      try{data=JSON.parse(text);}catch(e){throw new Error('not_json');}
+      if(!data||!Array.isArray(data.passwords))throw new Error('bad_shape');
+      USERS={};ADMIN_USERS={};
+      data.passwords.forEach(function(row){
+        const user=(row.Username||row.username||'').trim();
+        const pw=(row.Password||row.password||'').trim();
+        const role=(row.Role||row.role||'').trim().toLowerCase();
+        if(!user||!pw)return;
+        if(role==='admin'){ADMIN_USERS[user]=pw;}
+        else{USERS[user]=pw;}
+      });
+      rebuildUserDropdown();
+      passwordsLoaded=true;
+      onDone&&onDone(null);
+    })
+    .catch(function(err){
+      console.warn('loadPasswords error:',err.message);
+      onDone&&onDone(err);
+    });
+}
+
+function rebuildUserDropdown(){
+  const sel=document.getElementById('userSelect');
+  if(!sel)return;
+  const salesUsers=Object.keys(USERS);
+  const adminUsers=Object.keys(ADMIN_USERS);
+  let html='<option value="">— Select your name —</option>';
+  if(salesUsers.length){
+    html+='<optgroup label="Sales Representatives">';
+    salesUsers.forEach(function(u){html+=`<option value="${u}">${u} (Sales)</option>`;});
+    html+='</optgroup>';
+  }
+  if(adminUsers.length){
+    html+='<optgroup label="Admin">';
+    adminUsers.forEach(function(u){html+=`<option value="${u}">${u} (Admin)</option>`;});
+    html+='</optgroup>';
+  }
+  sel.innerHTML=html;
+}
 
 // Module config
 const MODULE_CONFIG = {
@@ -511,6 +918,246 @@ let currentUser = '';
 let currentModule = '';
 let allRecords = {};   // in-memory cache populated from Sheets
 let sheetsLoaded = false;
+let sheetStudents = []; // consolidated student roster pulled from the Students sheet (admin-only)
+
+// ===== STUDENT REGISTRY =====
+// Students live ONLY in the "Students" tab in Google Sheets — there is no local/
+// browser-side store. sheetStudents (populated by loadFromSheets) is the single
+// source of truth, so a student that's edited/removed in the Sheet can never
+// keep showing up here from a stale local cache.
+// Format: { id, name, mobile, email, batch, fees, installments, notes, createdBy, createdAt }
+function loadStudents(){
+  return sheetStudents;
+}
+// Push a newly-registered student to the Google Sheet "Students" tab so it's
+// visible centrally (e.g. to admins viewing the Student Ledger from another device).
+function syncStudentToSheet(stu){
+  const payload={
+    module:'Students', sheetName:'Students',
+    id:stu.id, name:stu.name, mobile:stu.mobile, email:stu.email,
+    batch:stu.batch, fees:stu.fees, installments:stu.installments,
+    notes:stu.notes, regDate:stu.regDate||'',
+    createdBy:stu.createdBy, createdAt:stu.createdAt
+  };
+  gasPost(payload).catch(()=>{
+    showToast('Student saved locally — Sheets sync failed (check connection).','error');
+  });
+}
+
+// ===== INSTALLMENT TASKS =====
+// For a student with N installments registered on regDate:
+// - Installment 1 is due on regDate (day of registration — immediate)
+// - Installments 2…N are due on the same calendar day of the following months
+// Tasks are generated for installments 2…N (installment 1 is assumed collected on registration)
+// Each task row: TaskID | StudentID | StudentName | Mobile | Batch | InstallmentNo | DueDate | AssignedTo | Status | CompletedAt
+function generateInstallmentTasks(stu){
+  const tasks=[];
+  const [yr,mo,dy]=stu.regDate.split('-').map(Number);
+  for(let i=2;i<=stu.installments;i++){
+    // Add (i-1) months to regDate, keeping the same day (clamped to month end)
+    const dueDate=new Date(yr,mo-1+(i-1),dy);
+    // If day overflowed (e.g. Jan 31 + 1mo = Mar 3), clamp to last day of target month
+    if(dueDate.getDate()!==dy){
+      dueDate.setDate(0); // last day of previous month = correct month's last day
+    }
+    const dueDateStr=dueDate.getFullYear()+'-'+String(dueDate.getMonth()+1).padStart(2,'0')+'-'+String(dueDate.getDate()).padStart(2,'0');
+    const taskId='TSK-'+stu.id+'-I'+i;
+    tasks.push({
+      taskId, stuId:stu.id, stuName:stu.name, mobile:stu.mobile,
+      batch:stu.batch, installmentNo:i, totalInstallments:stu.installments,
+      fees:stu.fees, dueDate:dueDateStr,
+      assignedTo:stu.createdBy, status:'Pending', completedAt:''
+    });
+  }
+  return tasks;
+}
+
+function syncTasksToSheet(tasks){
+  if(!tasks||!tasks.length)return;
+  tasks.forEach(t=>{
+    const payload={module:'Tasks', sheetName:'Tasks', ...t};
+    gasPost(payload).catch(()=>{}); // silent fail — tasks are also held in sheet
+  });
+}
+
+// ===== TASK SCREEN =====
+let sheetTasks=[]; // fetched from Google Sheets Tasks tab
+
+function openTasksScreen(){
+  document.getElementById('taskAvatar').textContent=currentUser.substring(0,2).toUpperCase();
+  document.getElementById('taskName').textContent=currentUser+' (Sales)';
+  showScreen('tasksScreen');
+  loadTasksFromSheets(()=>renderTasksScreen());
+}
+
+function loadTasksFromSheets(onDone){
+  showLoading('Fetching tasks from Google Sheets…');
+  const url=GAS_URL+'?action=getTasks&rep='+encodeURIComponent(currentUser);
+  fetch(url,{method:'GET',redirect:'follow'})
+    .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.text();})
+    .then(text=>{
+      hideLoading();
+      let data;
+      try{data=JSON.parse(text);}catch(e){throw new Error('not_json');}
+      sheetTasks=(data.tasks||[]).map(r=>({
+        taskId   :String(r['Task ID']||r.taskId||''),
+        stuId    :String(r['Student ID']||r.stuId||''),
+        stuName  :String(r['Student Name']||r.stuName||''),
+        mobile   :String(r['Mobile']||r.mobile||''),
+        batch    :String(r['Batch']||r.batch||''),
+        installmentNo:Number(r['Installment No']||r.installmentNo||0),
+        totalInstallments:Number(r['Total Installments']||r.totalInstallments||0),
+        fees     :Number(r['Total Fees']||r.fees||0),
+        dueDate  :String(r['Due Date']||r.dueDate||''),
+        assignedTo:String(r['Assigned To']||r.assignedTo||''),
+        status   :String(r['Status']||r.status||'Pending'),
+        completedAt:String(r['Completed At']||r.completedAt||'')
+      }));
+      onDone&&onDone();
+    })
+    .catch(err=>{
+      hideLoading();
+      console.warn('loadTasksFromSheets error:',err.message);
+      sheetTasks=[];
+      onDone&&onDone();
+    });
+}
+
+function renderTasksScreen(){
+  // Only show tasks assigned to current user that are due <= today and not completed
+  const todayStr=(()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
+  const myTasks=sheetTasks.filter(t=>
+    t.assignedTo===currentUser &&
+    t.dueDate<=todayStr &&
+    t.status!=='Completed'
+  ).sort((a,b)=>a.dueDate.localeCompare(b.dueDate));
+
+  const overdue=myTasks.filter(t=>t.dueDate<todayStr).length;
+  const dueToday=myTasks.filter(t=>t.dueDate===todayStr).length;
+
+  // Update dashboard badge
+  const badge=document.getElementById('dashTaskBadge');
+  if(badge){
+    if(myTasks.length>0){badge.textContent=myTasks.length;badge.style.display='inline';}
+    else badge.style.display='none';
+  }
+
+  document.getElementById('tasksKpiRow').innerHTML=`
+    <div class="kpi-card" style="border-top:4px solid var(--danger);">
+      <div class="kpi-label">🔴 Overdue</div>
+      <div class="kpi-value" style="font-size:26px;color:var(--danger);">${overdue}</div>
+      <div class="kpi-sub">Past due date</div>
+    </div>
+    <div class="kpi-card" style="border-top:4px solid var(--gold);">
+      <div class="kpi-label">🟡 Due Today</div>
+      <div class="kpi-value" style="font-size:26px;color:var(--gold);">${dueToday}</div>
+      <div class="kpi-sub">Follow up today</div>
+    </div>
+    <div class="kpi-card" style="border-top:4px solid var(--navy);">
+      <div class="kpi-label">📋 Total Pending</div>
+      <div class="kpi-value" style="font-size:26px;">${myTasks.length}</div>
+      <div class="kpi-sub">Up to today</div>
+    </div>
+  `;
+  document.getElementById('tasksCount').textContent=myTasks.length+' task(s)';
+
+  if(!myTasks.length){
+    document.getElementById('tasksTableBody').innerHTML=`
+      <div class="empty-state" style="padding:48px;">
+        <div style="font-size:32px;margin-bottom:10px;">✅</div>
+        <div style="font-weight:600;color:var(--success);font-size:15px;">All caught up!</div>
+        <div style="font-size:12px;color:var(--gray-400);margin-top:6px;">No pending installment tasks due today or earlier.</div>
+      </div>`;
+    return;
+  }
+
+  document.getElementById('tasksTableBody').innerHTML=`
+    <table class="task-tbl">
+      <thead><tr>
+        <th style="width:40px;"></th>
+        <th>Student</th>
+        <th>Mobile</th>
+        <th>Batch</th>
+        <th>Installment</th>
+        <th>Due Date</th>
+        <th>Amount</th>
+        <th>Status</th>
+      </tr></thead>
+      <tbody>
+      ${myTasks.map(t=>{
+        const isOverdue=t.dueDate<todayStr;
+        const isToday=t.dueDate===todayStr;
+        const instAmt=t.fees&&t.totalInstallments?Math.round(t.fees/t.totalInstallments):0;
+        const dateLabel=isOverdue?`<span class="task-overdue">⚠ ${fmtDate(t.dueDate)}</span>`:
+                        isToday?`<span class="task-today">📅 Today</span>`:
+                        `<span class="task-upcoming">${fmtDate(t.dueDate)}</span>`;
+        return`<tr class="${isOverdue?'overdue-row':''}">
+          <td style="text-align:center;">
+            <button class="task-tick-btn" title="Mark complete" onclick="completeTask('${t.taskId}',this)">○</button>
+          </td>
+          <td>
+            <strong>${t.stuName}</strong>
+            <div style="font-size:10px;color:var(--gray-400);font-family:monospace;margin-top:2px;">${t.stuId}</div>
+          </td>
+          <td>${t.mobile}</td>
+          <td><span class="badge badge-blue">${t.batch}</span></td>
+          <td><span class="inst-badge">Inst ${t.installmentNo} / ${t.totalInstallments}</span></td>
+          <td>${dateLabel}</td>
+          <td><strong style="color:var(--danger);">${instAmt>0?fmtINR(instAmt):'—'}</strong></td>
+          <td><span style="background:var(--danger-bg);color:var(--danger);border-radius:10px;padding:3px 9px;font-size:10.5px;font-weight:600;">⏳ Pending</span></td>
+        </tr>`;
+      }).join('')}
+      </tbody>
+    </table>`;
+}
+
+function fmtDate(str){
+  if(!str)return '—';
+  const [y,m,d]=str.split('-');
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${d} ${months[parseInt(m,10)-1]} ${y}`;
+}
+
+function completeTask(taskId,btn){
+  // Optimistic UI — mark row done immediately
+  const row=btn.closest('tr');
+  btn.textContent='✓';
+  btn.classList.add('done');
+  row.classList.add('task-done');
+  setTimeout(()=>row.style.display='none',1200);
+
+  // Update sheetTasks in memory
+  const t=sheetTasks.find(x=>x.taskId===taskId);
+  if(t){t.status='Completed';t.completedAt=new Date().toISOString();}
+
+  // Refresh badge count
+  const todayStr=(()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
+  const remaining=sheetTasks.filter(x=>x.assignedTo===currentUser&&x.dueDate<=todayStr&&x.status!=='Completed').length;
+  const badge=document.getElementById('dashTaskBadge');
+  if(badge){if(remaining>0){badge.textContent=remaining;badge.style.display='inline';}else badge.style.display='none';}
+  document.getElementById('tasksCount').textContent=remaining+' task(s)';
+
+  // Sync completion to Google Sheets
+  const payload={module:'Tasks',sheetName:'Tasks',action:'completeTask',taskId,completedAt:t?t.completedAt:new Date().toISOString()};
+  gasPost(payload).catch(()=>showToast('Task marked done locally — Sheets sync failed.','error'));
+  showToast('Task marked as completed ✓','success');
+}
+function generateStudentId(name,batch){
+  const initials=(name||'ST').trim().split(' ').map(w=>w[0]||'').join('').toUpperCase().slice(0,3).padEnd(2,'X');
+  const bat=(batch||'GEN').slice(0,3).toUpperCase();
+  const ts=Date.now().toString(36).toUpperCase().slice(-4);
+  return `STU-${bat}-${initials}-${ts}`;
+}
+function getStudentById(id){
+  return sheetStudents.find(s=>s.id===id) || null;
+}
+function getStudentsPaidAmount(stuId){
+  // Sum all invoice amounts across all modules linked to this student
+  return getAllRecords().filter(r=>r.stuId===stuId).reduce((s,r)=>s+r.amount,0);
+}
+
+// Also extend allRecords normalizer to capture stuId field from sheets
+// (handled in loadFromSheets below)
 
 // ===== GOOGLE SHEETS =====
 const GAS_URL = 'https://script.google.com/macros/s/AKfycby3CtKELsX_Sa0saYSuQwYlCqcQI052tjHZaX46B68eNseVKCXvIdXIK6Wv1fDnsdSe/exec';
@@ -614,10 +1261,31 @@ function loadFromSheets(onDone){
             taxableValue : toNum(key(r,'Taxable Value')  ?? key(r,'taxableValue')),
             cgst         : toNum(key(r,'CGST 9')         ?? key(r,'cgst')),
             sgst         : toNum(key(r,'SGST 9')         ?? key(r,'sgst')),
-            amount       : amt
+            amount       : amt,
+            stuId        : String(key(r,'Student ID')    ?? key(r,'stuId')     ?? '')
           };
         });
       });
+
+      // ── Students sheet → consolidated roster (admin-only).
+      // This is what lets the Admin Dashboard's Student Ledger show every
+      // student registered by every sales rep, not just whatever happens to
+      // be in this browser's local storage.
+      sheetStudents = (data.Students || []).map(r => ({
+        id          : String(key(r,'Student ID')    ?? ''),
+        name        : String(key(r,'Full Name')     ?? ''),
+        mobile      : String(key(r,'Mobile')        ?? ''),
+        email       : String(key(r,'Email')         ?? ''),
+        batch       : String(key(r,'Batch Code')    ?? ''),
+        fees        : toNum(key(r,'Total Fees')),
+        installments: Math.min(6, Math.max(1, parseInt(key(r,'Installments'),10) || 1)),
+        notes       : String(key(r,'Notes')         ?? ''),
+        createdBy   : String(key(r,'Registered By') ?? ''),
+        createdAt   : String(key(r,'Registered At') ?? '')
+      })).filter(s => s.id);
+      // NOTE: sheetStudents is the ONLY place student data lives in this app —
+      // there is no local/browser cache to merge with or fall back to.
+
       sheetsLoaded = true;
       showToast('Data loaded from Google Sheets ✓','success');
       onDone && onDone();
@@ -647,14 +1315,32 @@ function showScreen(id){
   document.getElementById(id).classList.add('active');
 }
 
+// goBack(): returns to the correct home screen depending on who is logged in.
+// Admins land on the Admin Dashboard; sales reps land on the sales dashboard.
+function goBack(){
+  showScreen(ADMIN_USERS.hasOwnProperty(currentUser) ? 'adminScreen' : 'dashScreen');
+}
+
 document.addEventListener('keydown', e=>{
   if(e.key==='Escape'){
     const inv = document.getElementById('invoiceScreen');
+    const stu = document.getElementById('studentScreen');
+    const led = document.getElementById('ledgerScreen');
+    const tsk = document.getElementById('tasksScreen');
     if(inv.classList.contains('active')){
       inv.classList.add('behind');
       setTimeout(()=>inv.classList.remove('behind'),400);
       showScreen('dashScreen');
+    } else if(stu.classList.contains('active')){
+      goBack();
+    } else if(led.classList.contains('active')){
+      goBack();
+    } else if(tsk.classList.contains('active')){
+      goBack();
     }
+    // Close student dropdown if open
+    const dd=document.getElementById('stuDropdown');
+    if(dd)dd.classList.remove('open');
   }
 });
 
@@ -667,6 +1353,24 @@ function doLogin(){
   const user=document.getElementById('userSelect').value;
   const pw=document.getElementById('pwInput').value;
   const err=document.getElementById('loginErr');
+  const btn=document.querySelector('#loginScreen .btn-primary');
+
+  // If passwords haven't been fetched yet, fetch first then re-invoke
+  if(!passwordsLoaded){
+    if(btn){btn.textContent='Loading credentials…';btn.disabled=true;}
+    err.style.display='none';
+    loadPasswords(function(loadErr){
+      if(btn){btn.textContent='Sign In →';btn.disabled=false;}
+      if(loadErr){
+        err.textContent='Could not load credentials from Google Sheets. Check your connection.';
+        err.style.display='block';
+        return;
+      }
+      doLogin(); // retry now that passwords are loaded
+    });
+    return;
+  }
+
   if(!user){err.textContent='Please select your name.';err.style.display='block';return;}
   const isAdmin=ADMIN_USERS.hasOwnProperty(user);
   const isSales=USERS.hasOwnProperty(user);
@@ -680,17 +1384,28 @@ function doLogin(){
   err.style.display='none';
   currentUser=user;
   const ini=user.substring(0,2).toUpperCase();
-  ['dashAvatar','invAvatar'].forEach(id=>document.getElementById(id).textContent=ini);
+  ['dashAvatar','invAvatar','stuAvatar','ledAvatar'].forEach(id=>document.getElementById(id).textContent=ini);
   if(isAdmin){
     document.getElementById('dashName').textContent=user+' (Admin)';
     document.getElementById('invName').textContent=user+' (Admin)';
+    document.getElementById('stuName').textContent=user+' (Admin)';
+    document.getElementById('ledName').textContent=user+' (Admin)';
     document.getElementById('dashGreeting').textContent=user;
     openAdminDashboard(user);
   } else {
     document.getElementById('dashName').textContent=user+' (Sales)';
     document.getElementById('invName').textContent=user+' (Sales)';
+    document.getElementById('stuName').textContent=user+' (Sales)';
+    document.getElementById('ledName').textContent=user+' (Sales)';
     document.getElementById('dashGreeting').textContent=user;
     showScreen('dashScreen');
+    // Load task badge count in background
+    loadTasksFromSheets(()=>{
+      const todayStr=(()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
+      const count=sheetTasks.filter(t=>t.assignedTo===currentUser&&t.dueDate<=todayStr&&t.status!=='Completed').length;
+      const badge=document.getElementById('dashTaskBadge');
+      if(badge){if(count>0){badge.textContent=count;badge.style.display='inline';}else badge.style.display='none';}
+    });
   }
 }
 function doLogout(){
@@ -701,17 +1416,18 @@ function doLogout(){
 }
 
 // ===== OPEN MODULE =====
+let linkedStudentId = ''; // tracks which student is linked to current invoice
+
 function openModule(mod){
   currentModule=mod;
+  linkedStudentId='';
   const cfg=MODULE_CONFIG[mod];
   document.getElementById('invTopTitle').textContent=cfg.label+' — Invoice Module';
   document.getElementById('formTitle').textContent='New '+cfg.invoiceTitle;
   document.getElementById('gstNote').textContent=cfg.hasGST?'(Inclusive of 18% GST)':'';
   document.getElementById('fDate').value=new Date().toISOString().split('T')[0];
-  // Auto invoice number
-  const recs=allRecords[mod]||[];
-  const next=String(recs.length+1).padStart(3,'0');
-  document.getElementById('fInvNum').value=`${mod.substring(0,3).toUpperCase()}-${new Date().getFullYear()}-${next}`;
+  // Auto invoice number (recomputed once fresh data arrives below)
+  document.getElementById('fInvNum').value='';
   ['fName','fMobile','fEmail','fAmount','fUTR'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('fCode').value='';
   document.getElementById('fPayment').value='';
@@ -719,13 +1435,28 @@ function openModule(mod){
   document.getElementById('previewBadge').className='badge badge-draft';
   document.getElementById('previewBadge').textContent='Draft';
   document.getElementById('invDoc').innerHTML='<div style="text-align:center;color:var(--gray-400);padding:50px 20px;font-size:13px;">Fill in the form to preview the invoice</div>';
-  // Reset button states: Save enabled, Print locked until saved
+  // Reset student search
+  document.getElementById('stuSearchInput').value='';
+  document.getElementById('stuDropdown').classList.remove('open');
+  document.getElementById('linkedStudentBar').style.display='none';
+  document.getElementById('stuClearBtn').style.display='none';
+  // Reset button states
   lastSavedData = null;
   document.getElementById('btnSave').disabled=false;
   document.getElementById('btnSave').textContent='💾 Save & Sync';
   document.getElementById('btnPrint').disabled=true;
   document.getElementById('btnPrint').title='Save the invoice first to enable printing';
+  // Clear stale in-memory data, then pull a fresh copy from Google Sheets —
+  // student search/autocomplete, invoice numbering, and the duplicate-invoice
+  // check must always reflect the live Sheet, never a leftover local/in-memory copy.
+  allRecords = {};
+  sheetStudents = [];
   showScreen('invoiceScreen');
+  loadFromSheets(()=>{
+    const recs=allRecords[mod]||[];
+    const next=String(recs.length+1).padStart(3,'0');
+    document.getElementById('fInvNum').value=`${mod.substring(0,3).toUpperCase()}-${new Date().getFullYear()}-${next}`;
+  });
 }
 
 // ===== DUPLICATE CHECK =====
@@ -766,7 +1497,8 @@ function getFormData(){
     utr:document.getElementById('fUTR').value.trim(),
     amount:parseFloat(document.getElementById('fAmount').value)||0,
     rep:currentUser,
-    module:currentModule
+    module:currentModule,
+    stuId:linkedStudentId||''
   };
 }
 
@@ -950,7 +1682,8 @@ function sendToGoogleSheets(d){
     code:d.code,payment:d.payment,utr:d.utr,module:d.module,
     taxableValue:isTH?fmt2(taxable):'',
     cgst:isTH?fmt2(cgst):'',sgst:isTH?fmt2(sgst):'',
-    invoiceValue:d.amount,rep:d.rep,savedAt:new Date().toISOString()
+    invoiceValue:d.amount,rep:d.rep,savedAt:new Date().toISOString(),
+    stuId:d.stuId||''
   };
   gasPost(payload).then(()=>{
     // no-cors: request sent — GAS should have received it
@@ -977,7 +1710,7 @@ function printInvoice(){
 // ===== TOAST =====
 function showToast(msg,type='success'){
   const t=document.getElementById('toast');
-  const icon = type==='success'?'✅ ' : type==='error'?'❌ ' : 'ℹ️ ';
+  const icon = type==='success'?'✅ ' : type==='error'?'❌ ' : type==='warning'?'⚠️ ' : 'ℹ️ ';
   t.textContent=icon+msg;
   t.className='toast '+type+' show';
   setTimeout(()=>t.classList.remove('show'),5000);
@@ -1007,10 +1740,31 @@ function renderAdminDashboard(){
     <div class="admin-header">
       <h2 style="display:flex;align-items:center;gap:14px;">📊 Admin Dashboard
         <button onclick="loadFromSheets(()=>renderAdminDashboard())" style="font-size:12px;padding:6px 14px;background:var(--blue-light);color:var(--blue);border:1px solid rgba(21,101,192,0.2);border-radius:20px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;">🔄 Refresh from Sheets</button>
+        <button onclick="adminOpenLedger()" style="font-size:12px;padding:6px 14px;background:var(--gold-pale);color:var(--gold);border:1px solid rgba(184,148,31,0.3);border-radius:20px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;">📒 Student Ledger</button>
       </h2>
       <p>Live sales data from Google Sheets · All modules</p>
     </div>
     ${gasBanner}
+
+    <!-- GLOBAL DATE RANGE FILTER (applies to every tab) -->
+    <div style="background:var(--white);border:1.5px solid rgba(184,148,31,0.25);border-radius:var(--radius-sm);padding:12px 18px;margin-bottom:22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;box-shadow:var(--shadow-sm);">
+      <span style="font-size:11px;font-weight:700;color:var(--white);background:var(--gold);border-radius:10px;padding:3px 10px;text-transform:uppercase;letter-spacing:0.6px;flex-shrink:0;">📅 Date Filter</span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <label style="font-size:12px;font-weight:600;color:var(--gray-700);">From</label>
+        <input type="date" id="globalDateFrom" value="${adminDateFrom}" onchange="applyGlobalDateFilter()" style="padding:6px 10px;border:1.5px solid var(--gray-100);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12.5px;background:var(--gray-50);color:var(--text);outline:none;cursor:pointer;">
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <label style="font-size:12px;font-weight:600;color:var(--gray-700);">To</label>
+        <input type="date" id="globalDateTo" value="${adminDateTo}" onchange="applyGlobalDateFilter()" style="padding:6px 10px;border:1.5px solid var(--gray-100);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12.5px;background:var(--gray-50);color:var(--text);outline:none;cursor:pointer;">
+      </div>
+      <button onclick="setQuickDateRange('today')" style="padding:5px 12px;border:1.5px solid var(--gray-200);border-radius:20px;font-size:11px;font-weight:600;color:var(--gray-700);background:var(--white);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)';" onmouseout="this.style.borderColor='var(--gray-200)';this.style.color='var(--gray-700)';">Today</button>
+      <button onclick="setQuickDateRange('week')" style="padding:5px 12px;border:1.5px solid var(--gray-200);border-radius:20px;font-size:11px;font-weight:600;color:var(--gray-700);background:var(--white);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)';" onmouseout="this.style.borderColor='var(--gray-200)';this.style.color='var(--gray-700)';">This Week</button>
+      <button onclick="setQuickDateRange('month')" style="padding:5px 12px;border:1.5px solid var(--gray-200);border-radius:20px;font-size:11px;font-weight:600;color:var(--gray-700);background:var(--white);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)';" onmouseout="this.style.borderColor='var(--gray-200)';this.style.color='var(--gray-700)';">This Month</button>
+      <button onclick="setQuickDateRange('quarter')" style="padding:5px 12px;border:1.5px solid var(--gray-200);border-radius:20px;font-size:11px;font-weight:600;color:var(--gray-700);background:var(--white);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)';" onmouseout="this.style.borderColor='var(--gray-200)';this.style.color='var(--gray-700)';">This Quarter</button>
+      <button onclick="clearGlobalDateFilter()" style="padding:5px 14px;border:1.5px solid var(--danger);border-radius:20px;font-size:11px;font-weight:600;color:var(--danger);background:var(--danger-bg);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='var(--danger)';this.style.color='var(--white)';" onmouseout="this.style.background='var(--danger-bg)';this.style.color='var(--danger)';">✕ Clear</button>
+      <span id="activeDateLabel" style="font-size:11px;color:var(--gray-400);margin-left:4px;"></span>
+    </div>
+
     <div class="admin-tabs">
       <button class="admin-tab active" onclick="switchAdminTab('overview',this)">📈 Overview</button>
       <button class="admin-tab" onclick="switchAdminTab('records',this)">📋 All Records</button>
@@ -1026,6 +1780,7 @@ function renderAdminDashboard(){
   renderAdminRecords();
   renderAdminReps();
   renderAdminModules();
+  updateActiveDateLabel();
 }
 
 function switchAdminTab(name,btn){
@@ -1033,6 +1788,82 @@ function switchAdminTab(name,btn){
   document.querySelectorAll('.admin-panel').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('adminPanel_'+name).classList.add('active');
+}
+
+// ===== GLOBAL DATE FILTER HELPERS =====
+function getLocalDateStr(d){
+  const yr=d.getFullYear();
+  const mo=String(d.getMonth()+1).padStart(2,'0');
+  const dy=String(d.getDate()).padStart(2,'0');
+  return `${yr}-${mo}-${dy}`;
+}
+
+function setQuickDateRange(range){
+  const now=new Date();
+  let from='',to=getLocalDateStr(now);
+  if(range==='today'){
+    from=getLocalDateStr(now);
+  } else if(range==='week'){
+    const d=new Date(now);
+    d.setDate(d.getDate()-d.getDay()+1); // Monday
+    from=getLocalDateStr(d);
+  } else if(range==='month'){
+    from=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-01`;
+  } else if(range==='quarter'){
+    const qStart=Math.floor(now.getMonth()/3)*3;
+    from=`${now.getFullYear()}-${String(qStart+1).padStart(2,'0')}-01`;
+  }
+  adminDateFrom=from;
+  adminDateTo=to;
+  const el1=document.getElementById('globalDateFrom');
+  const el2=document.getElementById('globalDateTo');
+  if(el1)el1.value=from;
+  if(el2)el2.value=to;
+  updateActiveDateLabel();
+  refreshAllAdminPanels();
+}
+
+function applyGlobalDateFilter(){
+  adminDateFrom=document.getElementById('globalDateFrom').value||'';
+  adminDateTo=document.getElementById('globalDateTo').value||'';
+  updateActiveDateLabel();
+  refreshAllAdminPanels();
+}
+
+function clearGlobalDateFilter(){
+  adminDateFrom='';adminDateTo='';
+  const el1=document.getElementById('globalDateFrom');
+  const el2=document.getElementById('globalDateTo');
+  if(el1)el1.value='';
+  if(el2)el2.value='';
+  updateActiveDateLabel();
+  refreshAllAdminPanels();
+}
+
+function updateActiveDateLabel(){
+  const el=document.getElementById('activeDateLabel');
+  if(!el)return;
+  if(adminDateFrom||adminDateTo){
+    const from=adminDateFrom?new Date(adminDateFrom).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}):'—';
+    const to=adminDateTo?new Date(adminDateTo).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}):'—';
+    el.innerHTML=`<span style="background:var(--gold-pale);border:1px solid rgba(184,148,31,0.3);border-radius:10px;padding:3px 10px;color:var(--navy);font-weight:600;">Showing: ${from} → ${to}</span>`;
+  } else {
+    el.innerHTML='<span style="color:var(--gray-400);">All dates</span>';
+  }
+}
+
+function getDateFilteredRecords(){
+  let all=getAllRecords();
+  if(adminDateFrom){all=all.filter(r=>String(r.date).slice(0,10)>=adminDateFrom);}
+  if(adminDateTo){all=all.filter(r=>String(r.date).slice(0,10)<=adminDateTo);}
+  return all;
+}
+
+function refreshAllAdminPanels(){
+  renderAdminOverview();
+  renderAdminRecords();
+  renderAdminReps();
+  renderAdminModules();
 }
 
 function getAllRecords(){
@@ -1046,7 +1877,7 @@ function getAllRecords(){
 function fmtINR(n){return '₹'+Number(n).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});}
 
 function renderAdminOverview(){
-  const all=getAllRecords();
+  const all=getDateFilteredRecords();
   const totalInv=all.length;
   const totalRevenue=all.reduce((s,r)=>s+r.amount,0);
   // todayStr must be in the LOCAL timezone (IST = UTC+5:30), not UTC.
@@ -1084,8 +1915,8 @@ function renderAdminOverview(){
   all.forEach(r=>{repMap[r.rep]=(repMap[r.rep]||0)+r.amount;});
   const reps=Object.keys(repMap).sort((a,b)=>repMap[b]-repMap[a]);
 
-  // Module breakdown for donut
-  const modRev={};modules.forEach(m=>{modRev[m]=(allRecords[m]||[]).reduce((s,r)=>s+r.amount,0);});
+  // Module breakdown for donut — use filtered records
+  const modRev={};modules.forEach(m=>{modRev[m]=all.filter(r=>r.module===m).reduce((s,r)=>s+r.amount,0);});
   const totalModRev=Object.values(modRev).reduce((s,v)=>s+v,0)||1;
   const modColors=['#B8941F','#1565C0','#1B8A4F','#6B21A8'];
 
@@ -1100,13 +1931,17 @@ function renderAdminOverview(){
   const batches=['PTP','UPTP','FTTP'];
   const totalBatch=Object.values(batchMap).reduce((s,v)=>s+v,0)||1;
 
+  const dateCtxLabel=(adminDateFrom||adminDateTo)?`Filtered: ${adminDateFrom||'—'} → ${adminDateTo||'—'}`:'All time · all modules';
+  const todayLabel=(adminDateFrom||adminDateTo)?'In date range':'Today';
+
   const panel=document.getElementById('adminPanel_overview');
   panel.innerHTML=`
+    ${(adminDateFrom||adminDateTo)?`<div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;"><span class="active-filter-badge">📅 Date filter active</span><span style="font-size:12px;color:var(--gray-400);">Charts and KPIs reflect the selected date range</span></div>`:''}
     <div class="kpi-grid">
       <div class="kpi-card">
         <div class="kpi-label">Total Revenue</div>
         <div class="kpi-value">${fmtINR(totalRevenue)}</div>
-        <div class="kpi-sub">All time · all modules</div>
+        <div class="kpi-sub">${dateCtxLabel}</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Total Invoices</div>
@@ -1114,9 +1949,9 @@ function renderAdminOverview(){
         <div class="kpi-sub">Across ${modules.length} modules</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">Today's Revenue</div>
+        <div class="kpi-label">${(adminDateFrom||adminDateTo)?'Period Revenue':'Today\'s Revenue'}</div>
         <div class="kpi-value">${fmtINR(todayRevenue)}</div>
-        <div class="kpi-sub">${todayRecs.length} invoice(s) today</div>
+        <div class="kpi-sub">${todayRecs.length} invoice(s) ${(adminDateFrom||adminDateTo)?'in range':'today'}</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Top Module</div>
@@ -1204,9 +2039,12 @@ function buildDonut(segments,total){
 }
 
 let adminTableRecs=[];
+// Global date range filter shared across all admin sections
+let adminDateFrom='';
+let adminDateTo='';
 
 function renderAdminRecords(){
-  const all=getAllRecords().sort((a,b)=>new Date(b.savedAt||b.date)-new Date(a.savedAt||a.date));
+  const all=getDateFilteredRecords().sort((a,b)=>new Date(b.savedAt||b.date)-new Date(a.savedAt||a.date));
   adminTableRecs=all;
   const panel=document.getElementById('adminPanel_records');
   panel.innerHTML=`
@@ -1219,20 +2057,75 @@ function renderAdminRecords(){
         </select>
         <select id="adminFilterRep" onchange="adminFilterTable()">
           <option value="">All Reps</option>
-          ${[...new Set(all.map(r=>r.rep).filter(Boolean))].map(r=>`<option value="${r}">${r}</option>`).join('')}
+          ${[...new Set(getAllRecords().map(r=>r.rep).filter(Boolean))].map(r=>`<option value="${r}">${r}</option>`).join('')}
         </select>
-        <input type="date" id="adminFilterDate" onchange="adminFilterTable()" placeholder="Filter by date">
+        <select id="adminFilterPayment" onchange="adminFilterTable()">
+          <option value="">All Payment Types</option>
+          <option value="Full Payment">Full Payment</option>
+          <option value="First Installment">First Installment</option>
+          <option value="Subsequent Installment">Subsequent Installment</option>
+        </select>
+        <input type="date" id="adminFilterDate" onchange="adminFilterTable()" placeholder="Exact date" title="Filter by exact invoice date" style="max-width:160px;">
       </div>
     </div>
     <div class="admin-tbl-wrap">
-      <div class="admin-tbl-hdr"><h4>All Invoices</h4><span id="adminRecCount" style="font-size:12px;color:var(--gray-400);">${all.length} records${!sheetsLoaded?' · <span class="sync-err" style="font-size:11px;padding:2px 8px;border-radius:8px;">Offline — refresh to load Sheets</span>':' · <span class="sync-ok" style="font-size:11px;padding:2px 8px;border-radius:8px;">Live from Google Sheets</span>'}</span></div>
+      <div class="admin-tbl-hdr">
+        <h4>All Invoices ${(adminDateFrom||adminDateTo)?'<span class="active-filter-badge" style="font-size:11px;margin-left:8px;">📅 Date filtered</span>':''}</h4>
+        <span id="adminRecCount" style="font-size:12px;color:var(--gray-400);">${all.length} records${!sheetsLoaded?' · <span class="sync-err" style="font-size:11px;padding:2px 8px;border-radius:8px;">Offline — refresh to load Sheets</span>':' · <span class="sync-ok" style="font-size:11px;padding:2px 8px;border-radius:8px;">Live from Google Sheets</span>'}</span>
+      </div>
+      <div id="adminSubtotalBar">${buildSubtotalBar(all)}</div>
       <div id="adminTblBody">${buildAdminTable(all)}</div>
     </div>
   `;
 }
 
+function buildSubtotalBar(recs){
+  if(!recs.length)return '';
+  const totalAmt=recs.reduce((s,r)=>s+r.amount,0);
+  const thRecs=recs.filter(r=>MODULE_CONFIG[r.module]?.hasGST);
+  const totalTaxable=thRecs.reduce((s,r)=>s+(r.amount*100/118),0);
+  const totalGST=thRecs.reduce((s,r)=>s+(r.amount*100/118*0.18),0);
+  // group by module for mini breakdown
+  const byMod={};
+  recs.forEach(r=>{byMod[r.module]=(byMod[r.module]||0)+r.amount;});
+  const modEntries=Object.entries(byMod).sort((a,b)=>b[1]-a[1]);
+  const modColors={TradingHouse:'#B8941F',Akshay:'#1565C0',Piyush:'#1B8A4F',Victor:'#6B21A8'};
+  return `<div class="subtotal-bar">
+    <div class="sub-item">
+      <div class="sub-label">📄 Invoices</div>
+      <div class="sub-value">${recs.length}</div>
+    </div>
+    <div class="sub-divider"></div>
+    <div class="sub-item">
+      <div class="sub-label">💰 Total Amount</div>
+      <div class="sub-value">${fmtINR(totalAmt)}</div>
+    </div>
+    ${thRecs.length?`<div class="sub-divider"></div>
+    <div class="sub-item">
+      <div class="sub-label">📊 Taxable Value</div>
+      <div class="sub-value">${fmtINR(totalTaxable)}</div>
+    </div>
+    <div class="sub-divider"></div>
+    <div class="sub-item">
+      <div class="sub-label">🏛️ Total GST</div>
+      <div class="sub-value">${fmtINR(totalGST)}</div>
+    </div>`:''}
+    <div class="sub-divider"></div>
+    <div class="sub-item" style="align-items:flex-start;">
+      <div class="sub-label" style="margin-bottom:5px;">📦 By Module</div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;">
+        ${modEntries.map(([mod,amt])=>`<span style="background:rgba(255,255,255,0.12);border-radius:8px;padding:3px 9px;font-size:11px;color:var(--white);border-left:3px solid ${modColors[mod]||'#B8941F'};">${mod}: ${fmtINR(amt)}</span>`).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
 function buildAdminTable(recs){
   if(!recs.length)return '<div class="empty-state">No records found. Try refreshing from Sheets.</div>';
+  const totalAmt=recs.reduce((s,r)=>s+r.amount,0);
+  const thRecs=recs.filter(r=>MODULE_CONFIG[r.module]?.hasGST);
+  const totalTaxable=thRecs.reduce((s,r)=>s+(r.amount*100/118),0);
+  const totalGST=thRecs.reduce((s,r)=>s+(r.amount*100/118*0.18),0);
   return `<table class="rec-tbl"><thead><tr>
     <th>Inv No</th><th>Date</th><th>Module</th><th>Name</th><th>Mobile</th><th>Batch</th><th>Payment</th><th>UTR</th><th>Taxable</th><th>GST</th><th>Total</th><th>Rep</th>
   </tr></thead><tbody>
@@ -1253,20 +2146,30 @@ function buildAdminTable(recs){
       <td>${r.rep}</td>
     </tr>`;
   }).join('')}
+  <tr class="subtotal-row">
+    <td colspan="8" style="text-align:right;padding:11px 15px;"><strong>SUBTOTAL (${recs.length} invoice${recs.length!==1?'s':''})</strong></td>
+    <td><strong>${thRecs.length?fmtINR(totalTaxable):'—'}</strong></td>
+    <td><strong>${thRecs.length?fmtINR(totalGST):'—'}</strong></td>
+    <td><strong>${fmtINR(totalAmt)}</strong></td>
+    <td></td>
+  </tr>
   </tbody></table>`;
 }
 
 function adminFilterTable(){
   const mod=document.getElementById('adminFilterModule').value;
   const rep=document.getElementById('adminFilterRep').value;
+  const payment=document.getElementById('adminFilterPayment')?document.getElementById('adminFilterPayment').value:'';
   const date=document.getElementById('adminFilterDate').value;
-  let recs=getAllRecords();
+  let recs=getDateFilteredRecords();
   if(mod)recs=recs.filter(r=>r.module===mod);
   if(rep)recs=recs.filter(r=>r.rep===rep);
-  if(date)recs=recs.filter(r=>r.date===date);
+  if(payment)recs=recs.filter(r=>r.payment===payment);
+  if(date)recs=recs.filter(r=>String(r.date).slice(0,10)===date);
   recs.sort((a,b)=>new Date(b.savedAt||b.date)-new Date(a.savedAt||a.date));
   adminTableRecs=recs;
   document.getElementById('adminTblBody').innerHTML=buildAdminTable(recs);
+  document.getElementById('adminSubtotalBar').innerHTML=buildSubtotalBar(recs);
   document.getElementById('adminRecCount').textContent=recs.length+' records';
 }
 
@@ -1291,7 +2194,7 @@ function adminExportExcel(){
 }
 
 function renderAdminReps(){
-  const all=getAllRecords();
+  const all=getDateFilteredRecords();
   const repData={};
   all.forEach(r=>{
     if(!repData[r.rep])repData[r.rep]={invoices:0,revenue:0,modules:{}};
@@ -1302,7 +2205,9 @@ function renderAdminReps(){
   const reps=Object.keys(repData).sort((a,b)=>repData[b].revenue-repData[a].revenue);
   const totalRev=all.reduce((s,r)=>s+r.amount,0)||1;
   const panel=document.getElementById('adminPanel_reps');
+  const totalRevActual=all.reduce((s,r)=>s+r.amount,0);
   panel.innerHTML=`
+    ${(adminDateFrom||adminDateTo)?`<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;"><span class="active-filter-badge">📅 Date filter active</span><span style="font-size:12px;color:var(--gray-400);">Showing rep performance for selected date range only</span></div>`:''}
     <div class="kpi-grid" style="grid-template-columns:repeat(${Math.min(reps.length,4)},1fr);">
       ${reps.map((rep,i)=>{
         const colors=['#B8941F','#1565C0','#1B8A4F','#6B21A8'];
@@ -1314,6 +2219,15 @@ function renderAdminReps(){
         </div>`;
       }).join('') || '<div class="kpi-card"><div class="kpi-label">No Data</div><div class="kpi-value">—</div></div>'}
     </div>
+    ${reps.length?`<div class="subtotal-bar" style="margin-bottom:16px;">
+      <div class="sub-item"><div class="sub-label">👥 Reps Active</div><div class="sub-value">${reps.length}</div></div>
+      <div class="sub-divider"></div>
+      <div class="sub-item"><div class="sub-label">💰 Combined Revenue</div><div class="sub-value">${fmtINR(totalRevActual)}</div></div>
+      <div class="sub-divider"></div>
+      <div class="sub-item"><div class="sub-label">📄 Total Invoices</div><div class="sub-value">${all.length}</div></div>
+      <div class="sub-divider"></div>
+      <div class="sub-item"><div class="sub-label">📊 Avg per Invoice</div><div class="sub-value">${all.length?fmtINR(totalRevActual/all.length):'—'}</div></div>
+    </div>`:''}
     <div class="chart-card" style="margin-top:8px;">
       <h4>📊 Revenue Share by Sales Rep</h4>
       <div class="bar-chart" style="margin-top:8px;">
@@ -1334,12 +2248,28 @@ function renderAdminReps(){
 function renderAdminModules(){
   const panel=document.getElementById('adminPanel_modules');
   const modColors={TradingHouse:'#B8941F',Akshay:'#1565C0',Piyush:'#1B8A4F',Victor:'#6B21A8'};
-  const all=getAllRecords();
+  const all=getDateFilteredRecords();
   const totalRev=all.reduce((s,r)=>s+r.amount,0)||1;
+  const totalRevActual=all.reduce((s,r)=>s+r.amount,0);
   panel.innerHTML=`
+    ${(adminDateFrom||adminDateTo)?`<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;"><span class="active-filter-badge">📅 Date filter active</span><span style="font-size:12px;color:var(--gray-400);">Module stats reflect the selected date range only</span></div>`:''}
+    ${all.length?`<div class="subtotal-bar" style="margin-bottom:20px;">
+      <div class="sub-item"><div class="sub-label">🏛️ Modules</div><div class="sub-value">${Object.keys(MODULE_CONFIG).length}</div></div>
+      <div class="sub-divider"></div>
+      <div class="sub-item"><div class="sub-label">💰 Total Revenue</div><div class="sub-value">${fmtINR(totalRevActual)}</div></div>
+      <div class="sub-divider"></div>
+      <div class="sub-item"><div class="sub-label">📄 Total Invoices</div><div class="sub-value">${all.length}</div></div>
+      <div class="sub-divider"></div>
+      <div class="sub-item" style="align-items:flex-start;">
+        <div class="sub-label" style="margin-bottom:5px;">🏆 Top Module</div>
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--gold-light);">
+          ${Object.keys(MODULE_CONFIG).reduce((top,m)=>{const rev=all.filter(r=>r.module===m).reduce((s,r)=>s+r.amount,0);return rev>(all.filter(r=>r.module===top).reduce((s,r)=>s+r.amount,0))?m:top;},Object.keys(MODULE_CONFIG)[0])}
+        </div>
+      </div>
+    </div>`:''}
     <div class="kpi-grid">
       ${Object.keys(MODULE_CONFIG).map(mod=>{
-        const recs=allRecords[mod]||[];
+        const recs=all.filter(r=>r.module===mod);
         const rev=recs.reduce((s,r)=>s+r.amount,0);
         const pct=Math.round((rev/totalRev)*100);
         return `<div class="kpi-card" style="border-top:4px solid ${modColors[mod]||'#B8941F'};">
@@ -1351,15 +2281,15 @@ function renderAdminModules(){
     </div>
     <div class="chart-row">
       ${Object.keys(MODULE_CONFIG).map(mod=>{
-        const recs=allRecords[mod]||[];
+        const recs=all.filter(r=>r.module===mod);
         const repMap={};
         recs.forEach(r=>{repMap[r.rep]=(repMap[r.rep]||0)+r.amount;});
         const modRev=recs.reduce((s,r)=>s+r.amount,0)||1;
-        const reps=Object.keys(repMap).sort((a,b)=>repMap[b]-repMap[a]);
+        const rps=Object.keys(repMap).sort((a,b)=>repMap[b]-repMap[a]);
         return `<div class="chart-card">
           <h4>🏛️ ${mod} — Rep Breakdown</h4>
           <div class="bar-chart">
-            ${reps.length?reps.map((r,i)=>{
+            ${rps.length?rps.map((r,i)=>{
               const colors=['#B8941F','#1565C0','#1B8A4F'];
               const pct=Math.round((repMap[r]/modRev)*100)||0;
               return `<div class="bar-row">
@@ -1374,6 +2304,375 @@ function renderAdminModules(){
     </div>
   `;
 }
+
+// ===== STUDENT SCREEN NAVIGATION =====
+function openStudentScreen(){
+  document.getElementById('stuAvatar').textContent=currentUser.substring(0,2).toUpperCase();
+  const isAdmin=ADMIN_USERS.hasOwnProperty(currentUser);
+  document.getElementById('stuName').textContent=currentUser+(isAdmin?' (Admin)':' (Sales)');
+  resetStudentForm();
+
+  // Sales reps only get the registration form — the full student roster (with
+  // every student's contact details, fees & history) is an admin-only view.
+  const listWrap=document.getElementById('stuListPanelWrap');
+  const grid=document.getElementById('stuLayoutGrid');
+  if(isAdmin){
+    listWrap.style.display='';
+    grid.style.gridTemplateColumns='420px 1fr';
+  } else {
+    listWrap.style.display='none';
+    grid.style.gridTemplateColumns='1fr';
+    grid.style.maxWidth='480px';
+  }
+  // Clear any in-memory student data from a previous screen visit, then pull a
+  // fresh, authoritative roster straight from the Google Sheet. This guarantees
+  // a student removed/edited in the Sheet can never keep appearing here.
+  sheetStudents = [];
+  if(isAdmin) renderStudentList(''); // shows empty state immediately while fetching
+  showScreen('studentScreen');
+  loadFromSheets(()=>{ if(isAdmin) renderStudentList(''); });
+}
+function openLedgerScreen(){
+  // Student Ledger is an admin-only feature — it shows consolidated payment
+  // details for every student. Block direct/console access by non-admins.
+  if(!ADMIN_USERS.hasOwnProperty(currentUser)){
+    showToast('Student Ledger is only available to admins.','error');
+    showScreen('dashScreen');
+    return;
+  }
+  document.getElementById('ledAvatar').textContent=currentUser.substring(0,2).toUpperCase();
+  document.getElementById('ledName').textContent=currentUser+' (Admin)';
+  showScreen('ledgerScreen');
+  renderLedger(); // shows "load from Sheets" prompt if data not ready yet
+}
+// Called from the Admin Dashboard button — always fetches fresh data from
+// Google Sheets before rendering the ledger. Stale state is cleared first
+// so the ledger can never show old local data while the fetch is in-flight.
+function adminOpenLedger(){
+  // Clear stale state so renderLedger shows the "loading" message immediately
+  sheetsLoaded = false;
+  sheetStudents = [];
+  openLedgerScreen();           // shows the ledger screen with "loading" message
+  loadFromSheets(()=>renderLedger()); // then fetches and re-renders
+}
+
+// ===== STUDENT FORM =====
+function previewStuId(){
+  const name=document.getElementById('sfName').value.trim();
+  const batch=document.getElementById('sfBatch').value;
+  if(name){
+    const preview=generateStudentId(name,batch||'GEN');
+    document.getElementById('stuIdPreview').innerHTML='🪪 Preview: <strong>'+preview.split('-').slice(0,-1).join('-')+'-XXXX</strong>';
+  } else {
+    document.getElementById('stuIdPreview').textContent='🪪 Student ID will be auto-generated';
+  }
+}
+function resetStudentForm(){
+  ['sfName','sfMobile','sfEmail','sfFees','sfNotes'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.value='';
+  });
+  document.getElementById('sfBatch').value='';
+  document.getElementById('sfInstallments').value='1';
+  // Default registration date to today
+  const today=(()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
+  const rdEl=document.getElementById('sfRegDate');
+  if(rdEl)rdEl.value=today;
+  document.getElementById('stuIdPreview').textContent='🪪 Student ID will be auto-generated';
+  document.getElementById('stuFormTitle').textContent='New Student';
+}
+function saveStudent(){
+  const name=document.getElementById('sfName').value.trim();
+  const mobile=document.getElementById('sfMobile').value.trim();
+  const email=document.getElementById('sfEmail').value.trim();
+  const batch=document.getElementById('sfBatch').value;
+  const fees=parseFloat(document.getElementById('sfFees').value)||0;
+  const installments=parseInt(document.getElementById('sfInstallments').value,10)||1;
+  const notes=document.getElementById('sfNotes').value.trim();
+  const regDate=document.getElementById('sfRegDate').value; // YYYY-MM-DD
+  if(!name){showToast('Please enter student name.','error');return;}
+  if(!mobile||mobile.length!==10){showToast('Enter a valid 10-digit mobile number.','error');return;}
+  if(!batch){showToast('Please select a batch code.','error');return;}
+  if(!fees||fees<=0){showToast('Please enter valid total fees.','error');return;}
+  if(!regDate){showToast('Please select a registration date.','error');return;}
+  const students=loadStudents();
+  // Duplicate mobile — warn the user but still allow registration (e.g. new batch/course for same student)
+  if(students.some(s=>s.mobile===mobile)){
+    showToast('A student with this mobile number is already registered. Saving as a new entry anyway.','warning');
+  }
+  const id=generateStudentId(name,batch);
+  const stu={id,name,mobile,email,batch,fees,installments,notes,regDate,createdBy:currentUser,createdAt:new Date().toISOString()};
+  students.push(stu); // optimistic update of the live sheetStudents array
+  showToast('Student '+name+' registered with ID '+id+' ✓','success');
+  syncStudentToSheet(stu);
+  // Generate and sync installment follow-up tasks
+  if(installments>1){
+    const tasks=generateInstallmentTasks(stu);
+    syncTasksToSheet(tasks);
+  }
+  resetStudentForm();
+  renderStudentList('');
+  document.getElementById('stuListSearch').value='';
+}
+function renderStudentList(query=''){
+  const students=loadStudents();
+  const q=(query||'').toLowerCase();
+  const filtered=q?students.filter(s=>
+    s.name.toLowerCase().includes(q)||
+    s.mobile.includes(q)||
+    s.id.toLowerCase().includes(q)
+  ):students;
+  document.getElementById('stuCountBadge').textContent='('+students.length+' total)';
+  const body=document.getElementById('stuListBody');
+  if(!filtered.length){
+    body.innerHTML='<div class="empty-state">'+(q?'No students match your search.':'No students registered yet.')+'</div>';
+    return;
+  }
+  body.innerHTML=`<table class="stu-tbl">
+    <thead><tr>
+      <th>Student ID</th><th>Name</th><th>Mobile</th><th>Email</th><th>Batch</th><th>Total Fees</th><th>Installments</th><th>Registered By</th>
+    </tr></thead><tbody>
+    ${filtered.map(s=>`<tr>
+      <td><span class="stu-id-chip">${s.id}</span></td>
+      <td><strong>${s.name}</strong>${s.notes?`<div style="font-size:10.5px;color:var(--gray-400);margin-top:2px;">${s.notes}</div>`:''}</td>
+      <td>${s.mobile}</td>
+      <td>${s.email||'—'}</td>
+      <td><span class="badge badge-blue">${s.batch}</span></td>
+      <td><span class="fees-chip">${fmtINR(s.fees)}</span></td>
+      <td style="font-size:11.5px;color:var(--gray-700);">${s.installments||1}x</td>
+      <td style="font-size:11.5px;color:var(--gray-400);">${s.createdBy||'—'}</td>
+    </tr>`).join('')}
+    </tbody></table>`;
+}
+
+// ===== STUDENT SEARCH (Invoice screen autocomplete) =====
+function onStudentSearch(val){
+  const dd=document.getElementById('stuDropdown');
+  const q=(val||'').trim().toLowerCase();
+  if(!q){dd.classList.remove('open');return;}
+  const students=loadStudents();
+  const matches=students.filter(s=>
+    s.name.toLowerCase().includes(q)||
+    s.mobile.includes(q)||
+    s.id.toLowerCase().includes(q)
+  ).slice(0,8);
+  if(!matches.length){
+    dd.innerHTML='<div class="stu-dropdown-empty">No students found. <a href="#" onclick="openStudentScreen();return false;" style="color:var(--gold);">Register one →</a></div>';
+    dd.classList.add('open');
+    return;
+  }
+  const paid=stuId=>getAllRecords().filter(r=>r.stuId===stuId).reduce((s,r)=>s+r.amount,0);
+  dd.innerHTML=matches.map(s=>{
+    const p=paid(s.id);
+    const pending=Math.max(0,s.fees-p);
+    return `<div class="stu-dropdown-item" onclick="selectStudent('${s.id}')">
+      <div class="sdi-name">${s.name} <span style="font-family:monospace;font-size:10px;color:var(--gold);background:var(--gold-pale);padding:1px 6px;border-radius:4px;">${s.id}</span></div>
+      <div class="sdi-meta">📱 ${s.mobile} · 📦 ${s.batch} · <span style="color:${pending>0?'var(--danger)':'var(--success)'};font-weight:600;">${pending>0?'Pending: '+fmtINR(pending):'Fully Paid ✓'}</span></div>
+    </div>`;
+  }).join('');
+  dd.classList.add('open');
+}
+function selectStudent(stuId){
+  const stu=getStudentById(stuId);
+  if(!stu){showToast('Student not found.','error');return;}
+  linkedStudentId=stuId;
+  // Auto-fill invoice form fields
+  document.getElementById('fName').value=stu.name;
+  document.getElementById('fMobile').value=stu.mobile;
+  document.getElementById('fEmail').value=stu.email||'';
+  document.getElementById('fCode').value=stu.batch||'';
+  // Close dropdown, update search input
+  document.getElementById('stuSearchInput').value=stu.name+' ('+stu.id+')';
+  document.getElementById('stuDropdown').classList.remove('open');
+  document.getElementById('stuClearBtn').style.display='inline-flex';
+  // Show linked bar
+  const paid=getAllRecords().filter(r=>r.stuId===stuId).reduce((s,r)=>s+r.amount,0);
+  const pending=Math.max(0,stu.fees-paid);
+  const bar=document.getElementById('linkedStudentBar');
+  bar.style.display='flex';
+  bar.innerHTML=`
+    <span style="font-size:13px;">✅ <strong>${stu.name}</strong></span>
+    <span class="lsb-id">${stu.id}</span>
+    <span class="badge badge-blue">${stu.batch}</span>
+    <span style="color:var(--gray-400);font-size:11px;">Paid: ${fmtINR(paid)}</span>
+    ${pending>0?`<span class="lsb-pending">Pending: ${fmtINR(pending)}</span>`:'<span style="color:var(--success);font-size:11px;font-weight:600;">Fully Paid ✓</span>'}
+  `;
+  refreshPreview();
+}
+function clearStudentLink(){
+  linkedStudentId='';
+  document.getElementById('stuSearchInput').value='';
+  document.getElementById('stuDropdown').classList.remove('open');
+  document.getElementById('stuClearBtn').style.display='none';
+  document.getElementById('linkedStudentBar').style.display='none';
+  ['fName','fMobile','fEmail'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fCode').value='';
+  refreshPreview();
+}
+// Close dropdown when clicking outside
+document.addEventListener('click',e=>{
+  const dd=document.getElementById('stuDropdown');
+  const wrap=document.querySelector('.stu-search-wrap');
+  if(dd&&wrap&&!wrap.contains(e.target)){dd.classList.remove('open');}
+});
+
+// ===== LEDGER =====
+function renderLedger(){
+  // Admin ledger ALWAYS reads from sheetStudents — data fetched live from
+  // Google Sheets by loadFromSheets(). localStorage is never used here because
+  // it may contain stale or incomplete data from other devices/sessions.
+  if(!sheetsLoaded || !sheetStudents.length){
+    const kpiEl=document.getElementById('ledgerKpiRow');
+    const tblEl=document.getElementById('ledgerTableBody');
+    const cntEl=document.getElementById('ledgerCount');
+    if(kpiEl)kpiEl.innerHTML='';
+    if(cntEl)cntEl.textContent='';
+    if(tblEl)tblEl.innerHTML=`<div class="empty-state" style="padding:40px;">
+      <div style="font-size:28px;margin-bottom:10px;">☁️</div>
+      <div style="font-weight:600;color:var(--navy);margin-bottom:6px;">No data loaded from Google Sheets yet.</div>
+      <div style="font-size:12px;color:var(--gray-400);margin-bottom:16px;">Click the button below to fetch the latest student data.</div>
+      <button onclick="adminOpenLedger()" style="padding:10px 22px;background:linear-gradient(135deg,var(--gold),var(--gold-mid));color:var(--white);border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;">🔄 Load from Google Sheets</button>
+    </div>`;
+    return;
+  }
+
+  const students = sheetStudents;
+  const q=(document.getElementById('ledSearch').value||'').toLowerCase();
+  const batchF=document.getElementById('ledBatchFilter').value;
+  const statusF=document.getElementById('ledStatusFilter').value;
+
+  // Build per-student paid map from all invoice records
+  const paidMap={};
+  getAllRecords().forEach(r=>{
+    if(r.stuId)paidMap[r.stuId]=(paidMap[r.stuId]||0)+r.amount;
+  });
+
+  let list=students.map(s=>{
+    const paid=paidMap[s.id]||0;
+    const pending=Math.max(0,s.fees-paid);
+    const pct=s.fees>0?Math.min(100,Math.round(paid/s.fees*100)):0;
+    const status=paid<=0?'pending':pending<=0?'paid':'partial';
+    return{...s,paid,pending,pct,status};
+  });
+
+  // Filters
+  if(q)list=list.filter(s=>s.name.toLowerCase().includes(q)||s.id.toLowerCase().includes(q)||s.mobile.includes(q));
+  if(batchF)list=list.filter(s=>s.batch===batchF);
+  if(statusF)list=list.filter(s=>s.status===statusF);
+  list.sort((a,b)=>b.pending-a.pending);
+
+  // KPI
+  const totalStudents=list.length;
+  const totalFees=list.reduce((s,x)=>s+x.fees,0);
+  const totalPaid=list.reduce((s,x)=>s+x.paid,0);
+  const totalPending=list.reduce((s,x)=>s+x.pending,0);
+  document.getElementById('ledgerKpiRow').innerHTML=`
+    <div class="kpi-card"><div class="kpi-label">👥 Students</div><div class="kpi-value" style="font-size:24px;">${totalStudents}</div><div class="kpi-sub">Showing filtered</div></div>
+    <div class="kpi-card"><div class="kpi-label">💰 Total Fees</div><div class="kpi-value" style="font-size:20px;">${fmtINR(totalFees)}</div><div class="kpi-sub">Expected collection</div></div>
+    <div class="kpi-card"><div class="kpi-label">✅ Collected</div><div class="kpi-value" style="font-size:20px;color:var(--success);">${fmtINR(totalPaid)}</div><div class="kpi-sub">${totalFees>0?Math.round(totalPaid/totalFees*100):0}% of total</div></div>
+    <div class="kpi-card"><div class="kpi-label">⏳ Pending</div><div class="kpi-value" style="font-size:20px;color:var(--danger);">${fmtINR(totalPending)}</div><div class="kpi-sub">${list.filter(s=>s.pending>0).length} student(s)</div></div>
+  `;
+  document.getElementById('ledgerCount').textContent=list.length+' student(s)';
+
+  if(!list.length){
+    document.getElementById('ledgerTableBody').innerHTML='<div class="empty-state">No students found. <a href="#" onclick="openStudentScreen();return false;" style="color:var(--gold);">Register students →</a></div>';
+    return;
+  }
+  document.getElementById('ledgerTableBody').innerHTML=`
+    <table class="ledger-tbl">
+      <thead><tr>
+        <th>Student ID</th><th>Name</th><th>Batch</th><th>Total Fees</th><th>Paid</th><th>Pending</th><th>Progress</th><th>Status</th><th>Actions</th>
+      </tr></thead>
+      <tbody>${list.map(s=>{
+        const fillClass=s.status==='paid'?'':s.status==='partial'?'partial':'overdue';
+        return`<tr>
+          <td><span class="stu-id-chip">${s.id}</span></td>
+          <td><strong>${s.name}</strong><div style="font-size:10.5px;color:var(--gray-400);">📱 ${s.mobile}</div></td>
+          <td><span class="badge badge-blue">${s.batch}</span></td>
+          <td>${fmtINR(s.fees)}</td>
+          <td class="paid-amt">${fmtINR(s.paid)}</td>
+          <td class="${s.pending>0?'pending-amt':''}">${s.pending>0?fmtINR(s.pending):'—'}</td>
+          <td style="min-width:100px;">
+            <div style="display:flex;align-items:center;gap:6px;">
+              <div class="progress-track"><div class="progress-fill ${fillClass}" style="width:${s.pct}%;"></div></div>
+              <span style="font-size:10.5px;color:var(--gray-700);font-weight:600;">${s.pct}%</span>
+            </div>
+          </td>
+          <td><span class="badge-${s.status}">${s.status==='paid'?'✅ Paid':s.status==='partial'?'⏳ Partial':'❌ Unpaid'}</span></td>
+          <td><button class="btn-view-ledger" onclick="openLedgerModal('${s.id}')">View</button></td>
+        </tr>`;
+      }).join('')}</tbody>
+    </table>`;
+}
+
+function openLedgerModal(stuId){
+  // Look up from sheetStudents — the single, authoritative source from Google Sheets
+  const stu=getStudentById(stuId);
+  if(!stu)return;
+  const invoices=getAllRecords().filter(r=>r.stuId===stuId).sort((a,b)=>new Date(a.date)-new Date(b.date));
+  const paid=invoices.reduce((s,r)=>s+r.amount,0);
+  const pending=Math.max(0,stu.fees-paid);
+  const pct=stu.fees>0?Math.min(100,Math.round(paid/stu.fees*100)):0;
+  document.getElementById('modalStuName').textContent='📒 '+stu.name;
+  document.getElementById('modalBody').innerHTML=`
+    <div class="modal-stu-info">
+      <div class="modal-info-item"><div class="mil">Student ID</div><div class="miv"><span class="stu-id-chip">${stu.id}</span></div></div>
+      <div class="modal-info-item"><div class="mil">Mobile</div><div class="miv">${stu.mobile}</div></div>
+      <div class="modal-info-item"><div class="mil">Email</div><div class="miv">${stu.email||'—'}</div></div>
+      <div class="modal-info-item"><div class="mil">Batch</div><div class="miv"><span class="badge badge-blue">${stu.batch}</span></div></div>
+      <div class="modal-info-item"><div class="mil">Installment Plan</div><div class="miv">${stu.installments||1} installment${(stu.installments||1)>1?'s':''}</div></div>
+      ${stu.notes?`<div class="modal-info-item" style="grid-column:span 2;"><div class="mil">Notes</div><div class="miv">${stu.notes}</div></div>`:''}
+    </div>
+    <div class="modal-ledger-summary">
+      <div class="mls-item"><div class="mls-label">Total Fees</div><div class="mls-value">${fmtINR(stu.fees)}</div></div>
+      <div class="mls-item"><div class="mls-label">Total Paid</div><div class="mls-value" style="color:var(--success);">${fmtINR(paid)}</div></div>
+      <div class="mls-item"><div class="mls-label">Pending</div><div class="mls-value" style="color:${pending>0?'var(--danger)':'var(--success)'};">${pending>0?fmtINR(pending):'Nil ✓'}</div></div>
+    </div>
+    <div style="margin-bottom:14px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+        <span style="font-size:12px;font-weight:600;color:var(--navy);">Payment Progress</span>
+        <span style="font-size:12px;font-weight:700;color:${pct>=100?'var(--success)':'var(--gold)'};">${pct}%</span>
+      </div>
+      <div class="progress-track" style="height:10px;"><div class="progress-fill ${pct>=100?'':pct>0?'partial':'overdue'}" style="width:${pct}%;"></div></div>
+    </div>
+    <h4 style="font-family:'Playfair Display',serif;font-size:15px;color:var(--navy);margin-bottom:12px;">📄 Payment History (${invoices.length} invoice${invoices.length!==1?'s':''})</h4>
+    ${invoices.length?`<table class="rec-tbl" style="font-size:12px;">
+      <thead><tr><th>#</th><th>Invoice No</th><th>Date</th><th>Module</th><th>Payment Type</th><th>UTR</th><th>Amount</th></tr></thead>
+      <tbody>${invoices.map((r,i)=>`<tr>
+        <td>${i+1}</td>
+        <td><strong>${r.invNum}</strong></td>
+        <td>${r.date}</td>
+        <td><span class="badge badge-gold">${r.module}</span></td>
+        <td>${r.payment}</td>
+        <td style="font-size:10.5px;">${r.utr||'—'}</td>
+        <td><strong style="color:var(--success);">${fmtINR(r.amount)}</strong></td>
+      </tr>`).join('')}
+      <tr style="background:var(--navy);">
+        <td colspan="6" style="color:rgba(255,255,255,0.7);font-weight:600;padding:10px 14px;text-align:right;">TOTAL PAID</td>
+        <td style="color:var(--gold-light);font-weight:700;padding:10px 14px;">${fmtINR(paid)}</td>
+      </tr>
+      </tbody></table>`
+    :'<div class="empty-state" style="padding:24px;">No invoices raised yet for this student.</div>'}
+  `;
+  document.getElementById('ledgerModal').classList.add('open');
+}
+function closeLedgerModal(){
+  document.getElementById('ledgerModal').classList.remove('open');
+}
+// Close modal on backdrop click
+document.addEventListener('DOMContentLoaded',function(){
+  const m=document.getElementById('ledgerModal');
+  if(m)m.addEventListener('click',function(e){if(e.target===this)closeLedgerModal();});
+
+  // Pre-fetch passwords from Google Sheets so the dropdown is populated
+  // and login is instant when the user clicks Sign In.
+  loadPasswords(function(err){
+    if(err){
+      const errEl=document.getElementById('loginErr');
+      if(errEl){errEl.textContent='Could not load user list from Google Sheets. Sign In will retry automatically.';errEl.style.display='block';}
+    }
+  });
+});
 
 function numberToWords(n){
   if(n===0)return 'Zero';
