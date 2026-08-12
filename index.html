@@ -536,6 +536,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
                 <option value="PTP">PTP</option>
                 <option value="UPTP">UPTP</option>
                 <option value="FTTP">FTTP</option>
+                <option value="Elite">Elite</option>
               </select>
             </div>
             <div class="if-group">
@@ -704,6 +705,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
                 <option value="PTP">PTP</option>
                 <option value="UPTP">UPTP</option>
                 <option value="FTTP">FTTP</option>
+                <option value="Elite">Elite</option>
               </select>
             </div>
           </div>
@@ -779,6 +781,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
           <option value="PTP">PTP</option>
           <option value="UPTP">UPTP</option>
           <option value="FTTP">FTTP</option>
+          <option value="Elite">Elite</option>
         </select>
         <select id="ledStatusFilter" onchange="renderLedger()">
           <option value="">All Status</option>
@@ -1928,7 +1931,7 @@ function renderAdminOverview(){
   const batchMap={};
   all.forEach(r=>{if(r.code)batchMap[r.code]=(batchMap[r.code]||0)+1;});
   const batchColors=['#B8941F','#1565C0','#1B8A4F'];
-  const batches=['PTP','UPTP','FTTP'];
+  const batches=['PTP','UPTP','FTTP','Elite'];
   const totalBatch=Object.values(batchMap).reduce((s,v)=>s+v,0)||1;
 
   const dateCtxLabel=(adminDateFrom||adminDateTo)?`Filtered: ${adminDateFrom||'—'} → ${adminDateTo||'—'}`:'All time · all modules';
