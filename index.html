@@ -343,7 +343,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
   #printArea .inv-hdr-logo img{width:70px;height:70px;}
 }
 
-/* ===== PENDING TASKS SCREEN ===== */
+/* ===== PENDING FEES SCREEN ===== */
 #tasksScreen{background:var(--off-white);}
 .tasks-body{flex:1;overflow-y:auto;padding:32px 36px 60px;max-width:1100px;margin:0 auto;width:100%;}
 .tasks-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
@@ -456,9 +456,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
           <div class="module-arrow">→</div>
         </div>
         <div class="module-card" onclick="openTasksScreen()" id="tasksDashCard">
-          <div class="module-icon" style="background:#FDF2E7;color:#B8500A;">📋</div>
-          <div class="module-name">Pending Tasks <span id="dashTaskBadge" style="display:none;background:var(--danger);color:var(--white);border-radius:10px;padding:2px 8px;font-size:11px;font-weight:700;margin-left:6px;"></span></div>
-          <div class="module-desc">View overdue and today's installment follow-up tasks assigned to you — tick them off when done</div>
+          <div class="module-icon" style="background:#FDF2E7;color:#B8500A;">💰</div>
+          <div class="module-name">Pending Fees <span id="dashTaskBadge" style="display:none;background:var(--danger);color:var(--white);border-radius:10px;padding:2px 8px;font-size:11px;font-weight:700;margin-left:6px;"></span></div>
+          <div class="module-desc">View students with pending fee balances registered by you — name, mobile &amp; amount due</div>
           <div class="module-arrow">→</div>
         </div>
       </div>
@@ -587,12 +587,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
 </div>
 
 <!-- PRINT AREA (invisible, only rendered for print) -->
-<!-- ===== PENDING TASKS SCREEN ===== -->
+<!-- ===== PENDING FEES SCREEN ===== -->
 <div id="tasksScreen" class="screen">
   <div class="topbar">
     <div class="topbar-left">
       <img class="topbar-logo" src="1779330596138_image.png" alt="Logo" onerror="this.style.display='none'">
-      <span class="topbar-title">📋 Pending Installment Tasks</span>
+      <span class="topbar-title">💰 Pending Fees</span>
     </div>
     <div class="topbar-right">
       <div class="esc-hint">Press <kbd>Esc</kbd> to go back</div>
@@ -606,17 +606,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
   </div>
   <div class="tasks-body">
     <div class="tasks-hdr">
-      <h2>My Pending Tasks</h2>
+      <h2>Pending Fees</h2>
       <button onclick="openTasksScreen()" style="padding:8px 18px;background:var(--blue-light);color:var(--blue);border:1.5px solid rgba(21,101,192,0.2);border-radius:20px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;">🔄 Refresh</button>
     </div>
     <div class="tasks-kpi-row" id="tasksKpiRow"></div>
     <div class="task-card-wrap">
       <div class="task-card-hdr">
-        <h4>⏰ Overdue &amp; Today's Follow-ups</h4>
+        <h4>💰 Students with Pending Fees</h4>
         <span id="tasksCount" style="font-size:12px;color:var(--gray-400);"></span>
       </div>
       <div id="tasksTableBody">
-        <div class="empty-state">Loading tasks…</div>
+        <div class="empty-state">Loading pending fees…</div>
       </div>
     </div>
   </div>
@@ -983,93 +983,75 @@ function syncTasksToSheet(tasks){
   });
 }
 
-// ===== TASK SCREEN =====
-let sheetTasks=[]; // fetched from Google Sheets Tasks tab
+// ===== PENDING FEES SCREEN =====
+// Shows ONLY name, mobile & pending-fee amount for students registered by the
+// current sales rep who still owe money. No batch, no installment/task detail,
+// no other student fields — the backend (?action=getPendingFees) already
+// scopes/strips the data to just these three fields.
+let sheetPendingFees=[]; // fetched from Google Sheets via getPendingFees
 
 function openTasksScreen(){
   document.getElementById('taskAvatar').textContent=currentUser.substring(0,2).toUpperCase();
   document.getElementById('taskName').textContent=currentUser+' (Sales)';
   showScreen('tasksScreen');
-  loadTasksFromSheets(()=>renderTasksScreen());
+  loadPendingFeesFromSheets(()=>renderPendingFeesScreen());
 }
 
-function loadTasksFromSheets(onDone){
-  showLoading('Fetching tasks from Google Sheets…');
-  const url=GAS_URL+'?action=getTasks&rep='+encodeURIComponent(currentUser);
+function loadPendingFeesFromSheets(onDone){
+  showLoading('Fetching pending fees from Google Sheets…');
+  const url=GAS_URL+'?action=getPendingFees&rep='+encodeURIComponent(currentUser);
   fetch(url,{method:'GET',redirect:'follow'})
     .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.text();})
     .then(text=>{
       hideLoading();
       let data;
       try{data=JSON.parse(text);}catch(e){throw new Error('not_json');}
-      sheetTasks=(data.tasks||[]).map(r=>({
-        taskId   :String(r['Task ID']||r.taskId||''),
-        stuId    :String(r['Student ID']||r.stuId||''),
-        stuName  :String(r['Student Name']||r.stuName||''),
-        mobile   :String(r['Mobile']||r.mobile||''),
-        batch    :String(r['Batch']||r.batch||''),
-        installmentNo:Number(r['Installment No']||r.installmentNo||0),
-        totalInstallments:Number(r['Total Installments']||r.totalInstallments||0),
-        fees     :Number(r['Total Fees']||r.fees||0),
-        dueDate  :String(r['Due Date']||r.dueDate||''),
-        assignedTo:String(r['Assigned To']||r.assignedTo||''),
-        status   :String(r['Status']||r.status||'Pending'),
-        completedAt:String(r['Completed At']||r.completedAt||'')
+      sheetPendingFees=(data.students||[]).map(r=>({
+        name       :String(r.name||r.Name||''),
+        mobile     :String(r.mobile||r.Mobile||''),
+        pendingFees:Number(r.pendingFees||0)
       }));
       onDone&&onDone();
     })
     .catch(err=>{
       hideLoading();
-      console.warn('loadTasksFromSheets error:',err.message);
-      sheetTasks=[];
+      console.warn('loadPendingFeesFromSheets error:',err.message);
+      sheetPendingFees=[];
       onDone&&onDone();
     });
 }
 
-function renderTasksScreen(){
-  // Only show tasks assigned to current user that are due <= today and not completed
-  const todayStr=(()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
-  const myTasks=sheetTasks.filter(t=>
-    t.assignedTo===currentUser &&
-    t.dueDate<=todayStr &&
-    t.status!=='Completed'
-  ).sort((a,b)=>a.dueDate.localeCompare(b.dueDate));
+function renderPendingFeesScreen(){
+  const list=[...sheetPendingFees].sort((a,b)=>b.pendingFees-a.pendingFees);
+  const totalPending=list.reduce((s,x)=>s+x.pendingFees,0);
 
-  const overdue=myTasks.filter(t=>t.dueDate<todayStr).length;
-  const dueToday=myTasks.filter(t=>t.dueDate===todayStr).length;
-
-  // Update dashboard badge
+  // Update dashboard badge with count of students who still owe fees
   const badge=document.getElementById('dashTaskBadge');
   if(badge){
-    if(myTasks.length>0){badge.textContent=myTasks.length;badge.style.display='inline';}
+    if(list.length>0){badge.textContent=list.length;badge.style.display='inline';}
     else badge.style.display='none';
   }
 
   document.getElementById('tasksKpiRow').innerHTML=`
     <div class="kpi-card" style="border-top:4px solid var(--danger);">
-      <div class="kpi-label">🔴 Overdue</div>
-      <div class="kpi-value" style="font-size:26px;color:var(--danger);">${overdue}</div>
-      <div class="kpi-sub">Past due date</div>
+      <div class="kpi-label">👥 Students Pending</div>
+      <div class="kpi-value" style="font-size:26px;color:var(--danger);">${list.length}</div>
+      <div class="kpi-sub">With an outstanding balance</div>
     </div>
     <div class="kpi-card" style="border-top:4px solid var(--gold);">
-      <div class="kpi-label">🟡 Due Today</div>
-      <div class="kpi-value" style="font-size:26px;color:var(--gold);">${dueToday}</div>
-      <div class="kpi-sub">Follow up today</div>
-    </div>
-    <div class="kpi-card" style="border-top:4px solid var(--navy);">
-      <div class="kpi-label">📋 Total Pending</div>
-      <div class="kpi-value" style="font-size:26px;">${myTasks.length}</div>
-      <div class="kpi-sub">Up to today</div>
+      <div class="kpi-label">💰 Total Pending Amount</div>
+      <div class="kpi-value" style="font-size:22px;color:var(--gold);">${fmtINR(totalPending)}</div>
+      <div class="kpi-sub">Across your students</div>
     </div>
   `;
-  document.getElementById('tasksCount').textContent=myTasks.length+' task(s)';
+  document.getElementById('tasksCount').textContent=list.length+' student(s)';
 
-  if(!myTasks.length){
+  if(!list.length){
     document.getElementById('tasksTableBody').innerHTML=`
       <div class="empty-state" style="padding:48px;">
         <div style="font-size:32px;margin-bottom:10px;">✅</div>
         <div style="font-weight:600;color:var(--success);font-size:15px;">All caught up!</div>
-        <div style="font-size:12px;color:var(--gray-400);margin-top:6px;">No pending installment tasks due today or earlier.</div>
+        <div style="font-size:12px;color:var(--gray-400);margin-top:6px;">None of your students have pending fees.</div>
       </div>`;
     return;
   }
@@ -1077,73 +1059,18 @@ function renderTasksScreen(){
   document.getElementById('tasksTableBody').innerHTML=`
     <table class="task-tbl">
       <thead><tr>
-        <th style="width:40px;"></th>
-        <th>Student</th>
+        <th>Name</th>
         <th>Mobile</th>
-        <th>Batch</th>
-        <th>Installment</th>
-        <th>Due Date</th>
-        <th>Amount</th>
-        <th>Status</th>
+        <th>Pending Fees</th>
       </tr></thead>
       <tbody>
-      ${myTasks.map(t=>{
-        const isOverdue=t.dueDate<todayStr;
-        const isToday=t.dueDate===todayStr;
-        const instAmt=t.fees&&t.totalInstallments?Math.round(t.fees/t.totalInstallments):0;
-        const dateLabel=isOverdue?`<span class="task-overdue">⚠ ${fmtDate(t.dueDate)}</span>`:
-                        isToday?`<span class="task-today">📅 Today</span>`:
-                        `<span class="task-upcoming">${fmtDate(t.dueDate)}</span>`;
-        return`<tr class="${isOverdue?'overdue-row':''}">
-          <td style="text-align:center;">
-            <button class="task-tick-btn" title="Mark complete" onclick="completeTask('${t.taskId}',this)">○</button>
-          </td>
-          <td>
-            <strong>${t.stuName}</strong>
-            <div style="font-size:10px;color:var(--gray-400);font-family:monospace;margin-top:2px;">${t.stuId}</div>
-          </td>
-          <td>${t.mobile}</td>
-          <td><span class="badge badge-blue">${t.batch}</span></td>
-          <td><span class="inst-badge">Inst ${t.installmentNo} / ${t.totalInstallments}</span></td>
-          <td>${dateLabel}</td>
-          <td><strong style="color:var(--danger);">${instAmt>0?fmtINR(instAmt):'—'}</strong></td>
-          <td><span style="background:var(--danger-bg);color:var(--danger);border-radius:10px;padding:3px 9px;font-size:10.5px;font-weight:600;">⏳ Pending</span></td>
-        </tr>`;
-      }).join('')}
+      ${list.map(s=>`<tr>
+          <td><strong>${s.name}</strong></td>
+          <td>${s.mobile}</td>
+          <td><strong style="color:var(--danger);">${fmtINR(s.pendingFees)}</strong></td>
+        </tr>`).join('')}
       </tbody>
     </table>`;
-}
-
-function fmtDate(str){
-  if(!str)return '—';
-  const [y,m,d]=str.split('-');
-  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  return `${d} ${months[parseInt(m,10)-1]} ${y}`;
-}
-
-function completeTask(taskId,btn){
-  // Optimistic UI — mark row done immediately
-  const row=btn.closest('tr');
-  btn.textContent='✓';
-  btn.classList.add('done');
-  row.classList.add('task-done');
-  setTimeout(()=>row.style.display='none',1200);
-
-  // Update sheetTasks in memory
-  const t=sheetTasks.find(x=>x.taskId===taskId);
-  if(t){t.status='Completed';t.completedAt=new Date().toISOString();}
-
-  // Refresh badge count
-  const todayStr=(()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
-  const remaining=sheetTasks.filter(x=>x.assignedTo===currentUser&&x.dueDate<=todayStr&&x.status!=='Completed').length;
-  const badge=document.getElementById('dashTaskBadge');
-  if(badge){if(remaining>0){badge.textContent=remaining;badge.style.display='inline';}else badge.style.display='none';}
-  document.getElementById('tasksCount').textContent=remaining+' task(s)';
-
-  // Sync completion to Google Sheets
-  const payload={module:'Tasks',sheetName:'Tasks',action:'completeTask',taskId,completedAt:t?t.completedAt:new Date().toISOString()};
-  gasPost(payload).catch(()=>showToast('Task marked done locally — Sheets sync failed.','error'));
-  showToast('Task marked as completed ✓','success');
 }
 function generateStudentId(name,batch){
   const initials=(name||'ST').trim().split(' ').map(w=>w[0]||'').join('').toUpperCase().slice(0,3).padEnd(2,'X');
@@ -1402,10 +1329,9 @@ function doLogin(){
     document.getElementById('ledName').textContent=user+' (Sales)';
     document.getElementById('dashGreeting').textContent=user;
     showScreen('dashScreen');
-    // Load task badge count in background
-    loadTasksFromSheets(()=>{
-      const todayStr=(()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
-      const count=sheetTasks.filter(t=>t.assignedTo===currentUser&&t.dueDate<=todayStr&&t.status!=='Completed').length;
+    // Load pending-fees badge count in background
+    loadPendingFeesFromSheets(()=>{
+      const count=sheetPendingFees.length;
       const badge=document.getElementById('dashTaskBadge');
       if(badge){if(count>0){badge.textContent=count;badge.style.display='inline';}else badge.style.display='none';}
     });
