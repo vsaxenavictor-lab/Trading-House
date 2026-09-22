@@ -709,7 +709,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
               </select>
             </div>
           </div>
-          <div class="form-row full">
+          <div class="form-row">
+            <div class="if-group">
+              <label>Student Type <span style="color:var(--danger);">*</span></label>
+              <select id="sfStudentType">
+                <option value="">Select type</option>
+                <option value="New">🆕 New Student</option>
+                <option value="Old">🔁 Old / Existing Student</option>
+              </select>
+            </div>
             <div class="if-group">
               <label>Number of Installments <span style="color:var(--danger);">*</span></label>
               <select id="sfInstallments">
@@ -728,6 +736,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--te
               <input type="number" id="sfFees" placeholder="e.g. 50000" min="0">
             </div>
           </div>
+          <div class="form-row full">
+            <div class="if-group">
+              <label>Notes</label>
               <input type="text" id="sfNotes" placeholder="Optional notes about this student">
             </div>
           </div>
@@ -940,6 +951,7 @@ function syncStudentToSheet(stu){
     id:stu.id, name:stu.name, mobile:stu.mobile, email:stu.email,
     batch:stu.batch, fees:stu.fees, installments:stu.installments,
     notes:stu.notes, regDate:stu.regDate||'',
+    studentType:stu.studentType||'',
     createdBy:stu.createdBy, createdAt:stu.createdAt
   };
   gasPost(payload).catch(()=>{
@@ -989,12 +1001,58 @@ function syncTasksToSheet(tasks){
 // no other student fields — the backend (?action=getPendingFees) already
 // scopes/strips the data to just these three fields.
 let sheetPendingFees=[]; // fetched from Google Sheets via getPendingFees
+let sheetMonthSales={monthSales:0,invoiceCount:0}; // fetched from Google Sheets via getMonthSales — this rep's current-month total
 
 function openTasksScreen(){
   document.getElementById('taskAvatar').textContent=currentUser.substring(0,2).toUpperCase();
   document.getElementById('taskName').textContent=currentUser+' (Sales)';
   showScreen('tasksScreen');
-  loadPendingFeesFromSheets(()=>renderPendingFeesScreen());
+  showLoading('Fetching pending fees & this month\'s sales…');
+  Promise.all([fetchPendingFeesData(), fetchMonthSalesData()]).then(()=>{
+    hideLoading();
+    renderPendingFeesScreen();
+  });
+}
+
+// Lightweight fetch helpers used together (in parallel) by openTasksScreen.
+// They never reject — errors are swallowed and logged so Promise.all always
+// settles — and they don't touch the loading overlay themselves, since
+// openTasksScreen manages a single shared overlay for both requests.
+function fetchPendingFeesData(){
+  const url=GAS_URL+'?action=getPendingFees&rep='+encodeURIComponent(currentUser);
+  return fetch(url,{method:'GET',redirect:'follow'})
+    .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.text();})
+    .then(text=>{
+      let data;
+      try{data=JSON.parse(text);}catch(e){throw new Error('not_json');}
+      sheetPendingFees=(data.students||[]).map(r=>({
+        name       :String(r.name||r.Name||''),
+        mobile     :String(r.mobile||r.Mobile||''),
+        pendingFees:Number(r.pendingFees||0)
+      }));
+    })
+    .catch(err=>{
+      console.warn('fetchPendingFeesData error:',err.message);
+      sheetPendingFees=[];
+    });
+}
+
+function fetchMonthSalesData(){
+  const url=GAS_URL+'?action=getMonthSales&rep='+encodeURIComponent(currentUser);
+  return fetch(url,{method:'GET',redirect:'follow'})
+    .then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.text();})
+    .then(text=>{
+      let data;
+      try{data=JSON.parse(text);}catch(e){throw new Error('not_json');}
+      sheetMonthSales={
+        monthSales  :Number(data.monthSales||0),
+        invoiceCount:Number(data.invoiceCount||0)
+      };
+    })
+    .catch(err=>{
+      console.warn('fetchMonthSalesData error:',err.message);
+      sheetMonthSales={monthSales:0,invoiceCount:0};
+    });
 }
 
 function loadPendingFeesFromSheets(onDone){
@@ -1032,7 +1090,13 @@ function renderPendingFeesScreen(){
     else badge.style.display='none';
   }
 
+  const monthLabel=new Date().toLocaleDateString('en-IN',{month:'long',year:'numeric'});
   document.getElementById('tasksKpiRow').innerHTML=`
+    <div class="kpi-card" style="border-top:4px solid var(--success);">
+      <div class="kpi-label">📈 Your Sales — ${monthLabel}</div>
+      <div class="kpi-value" style="font-size:22px;color:var(--success);">${fmtINR(sheetMonthSales.monthSales)}</div>
+      <div class="kpi-sub">${sheetMonthSales.invoiceCount} invoice(s) this month</div>
+    </div>
     <div class="kpi-card" style="border-top:4px solid var(--danger);">
       <div class="kpi-label">👥 Students Pending</div>
       <div class="kpi-value" style="font-size:26px;color:var(--danger);">${list.length}</div>
@@ -1210,6 +1274,7 @@ function loadFromSheets(onDone){
         fees        : toNum(key(r,'Total Fees')),
         installments: Math.min(6, Math.max(1, parseInt(key(r,'Installments'),10) || 1)),
         notes       : String(key(r,'Notes')         ?? ''),
+        studentType : String(key(r,'Student Type')  ?? ''),
         createdBy   : String(key(r,'Registered By') ?? ''),
         createdAt   : String(key(r,'Registered At') ?? '')
       })).filter(s => s.id);
@@ -2302,6 +2367,7 @@ function resetStudentForm(){
     if(el)el.value='';
   });
   document.getElementById('sfBatch').value='';
+  document.getElementById('sfStudentType').value='';
   document.getElementById('sfInstallments').value='1';
   // Default registration date to today
   const today=(()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');})();
@@ -2315,6 +2381,7 @@ function saveStudent(){
   const mobile=document.getElementById('sfMobile').value.trim();
   const email=document.getElementById('sfEmail').value.trim();
   const batch=document.getElementById('sfBatch').value;
+  const studentType=document.getElementById('sfStudentType').value;
   const fees=parseFloat(document.getElementById('sfFees').value)||0;
   const installments=parseInt(document.getElementById('sfInstallments').value,10)||1;
   const notes=document.getElementById('sfNotes').value.trim();
@@ -2322,6 +2389,7 @@ function saveStudent(){
   if(!name){showToast('Please enter student name.','error');return;}
   if(!mobile||mobile.length!==10){showToast('Enter a valid 10-digit mobile number.','error');return;}
   if(!batch){showToast('Please select a batch code.','error');return;}
+  if(!studentType){showToast('Please select whether the student is New or Old.','error');return;}
   if(!fees||fees<=0){showToast('Please enter valid total fees.','error');return;}
   if(!regDate){showToast('Please select a registration date.','error');return;}
   const students=loadStudents();
@@ -2330,7 +2398,7 @@ function saveStudent(){
     showToast('A student with this mobile number is already registered. Saving as a new entry anyway.','warning');
   }
   const id=generateStudentId(name,batch);
-  const stu={id,name,mobile,email,batch,fees,installments,notes,regDate,createdBy:currentUser,createdAt:new Date().toISOString()};
+  const stu={id,name,mobile,email,batch,studentType,fees,installments,notes,regDate,createdBy:currentUser,createdAt:new Date().toISOString()};
   students.push(stu); // optimistic update of the live sheetStudents array
   showToast('Student '+name+' registered with ID '+id+' ✓','success');
   syncStudentToSheet(stu);
@@ -2357,9 +2425,14 @@ function renderStudentList(query=''){
     body.innerHTML='<div class="empty-state">'+(q?'No students match your search.':'No students registered yet.')+'</div>';
     return;
   }
+  const typeBadge=t=>t==='New'
+    ?'<span class="badge" style="background:var(--success-bg);color:var(--success);">🆕 New</span>'
+    :t==='Old'
+    ?'<span class="badge" style="background:var(--gold-pale);color:var(--gold);">🔁 Old</span>'
+    :'<span style="color:var(--gray-400);font-size:11px;">—</span>';
   body.innerHTML=`<table class="stu-tbl">
     <thead><tr>
-      <th>Student ID</th><th>Name</th><th>Mobile</th><th>Email</th><th>Batch</th><th>Total Fees</th><th>Installments</th><th>Registered By</th>
+      <th>Student ID</th><th>Name</th><th>Mobile</th><th>Email</th><th>Batch</th><th>Type</th><th>Total Fees</th><th>Installments</th><th>Registered By</th>
     </tr></thead><tbody>
     ${filtered.map(s=>`<tr>
       <td><span class="stu-id-chip">${s.id}</span></td>
@@ -2367,6 +2440,7 @@ function renderStudentList(query=''){
       <td>${s.mobile}</td>
       <td>${s.email||'—'}</td>
       <td><span class="badge badge-blue">${s.batch}</span></td>
+      <td>${typeBadge(s.studentType)}</td>
       <td><span class="fees-chip">${fmtINR(s.fees)}</span></td>
       <td style="font-size:11.5px;color:var(--gray-700);">${s.installments||1}x</td>
       <td style="font-size:11.5px;color:var(--gray-400);">${s.createdBy||'—'}</td>
@@ -2549,6 +2623,7 @@ function openLedgerModal(stuId){
       <div class="modal-info-item"><div class="mil">Mobile</div><div class="miv">${stu.mobile}</div></div>
       <div class="modal-info-item"><div class="mil">Email</div><div class="miv">${stu.email||'—'}</div></div>
       <div class="modal-info-item"><div class="mil">Batch</div><div class="miv"><span class="badge badge-blue">${stu.batch}</span></div></div>
+      <div class="modal-info-item"><div class="mil">Student Type</div><div class="miv">${stu.studentType==='New'?'🆕 New':stu.studentType==='Old'?'🔁 Old':'—'}</div></div>
       <div class="modal-info-item"><div class="mil">Installment Plan</div><div class="miv">${stu.installments||1} installment${(stu.installments||1)>1?'s':''}</div></div>
       ${stu.notes?`<div class="modal-info-item" style="grid-column:span 2;"><div class="mil">Notes</div><div class="miv">${stu.notes}</div></div>`:''}
     </div>
