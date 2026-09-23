@@ -1001,7 +1001,7 @@ function syncTasksToSheet(tasks){
 // no other student fields — the backend (?action=getPendingFees) already
 // scopes/strips the data to just these three fields.
 let sheetPendingFees=[]; // fetched from Google Sheets via getPendingFees
-let sheetMonthSales={monthSales:0,invoiceCount:0}; // fetched from Google Sheets via getMonthSales — this rep's current-month total
+let sheetMonthSales={monthSales:0,invoiceCount:0,cycleStart:'',cycleEnd:''}; // fetched from Google Sheets via getMonthSales — this rep's 20th-to-19th billing-cycle total
 
 function openTasksScreen(){
   document.getElementById('taskAvatar').textContent=currentUser.substring(0,2).toUpperCase();
@@ -1046,12 +1046,14 @@ function fetchMonthSalesData(){
       try{data=JSON.parse(text);}catch(e){throw new Error('not_json');}
       sheetMonthSales={
         monthSales  :Number(data.monthSales||0),
-        invoiceCount:Number(data.invoiceCount||0)
+        invoiceCount:Number(data.invoiceCount||0),
+        cycleStart  :String(data.cycleStart||''),
+        cycleEnd    :String(data.cycleEnd||'')
       };
     })
     .catch(err=>{
       console.warn('fetchMonthSalesData error:',err.message);
-      sheetMonthSales={monthSales:0,invoiceCount:0};
+      sheetMonthSales={monthSales:0,invoiceCount:0,cycleStart:'',cycleEnd:''};
     });
 }
 
@@ -1090,12 +1092,23 @@ function renderPendingFeesScreen(){
     else badge.style.display='none';
   }
 
-  const monthLabel=new Date().toLocaleDateString('en-IN',{month:'long',year:'numeric'});
+  // Format a 'YYYY-MM-DD' string from the backend as "20 Aug" for the KPI label.
+  // Parsed with an explicit T00:00:00 so it's read as local time, not UTC
+  // (a bare 'YYYY-MM-DD' string is parsed as UTC midnight by Date, which can
+  // roll back a day in IST).
+  const fmtCycleDate=ymd=>{
+    if(!ymd)return '';
+    const d=new Date(ymd+'T00:00:00');
+    return d.toLocaleDateString('en-IN',{day:'2-digit',month:'short'});
+  };
+  const cycleLabel=(sheetMonthSales.cycleStart&&sheetMonthSales.cycleEnd)
+    ? fmtCycleDate(sheetMonthSales.cycleStart)+' – '+fmtCycleDate(sheetMonthSales.cycleEnd)
+    : 'this cycle';
   document.getElementById('tasksKpiRow').innerHTML=`
     <div class="kpi-card" style="border-top:4px solid var(--success);">
-      <div class="kpi-label">📈 Your Sales — ${monthLabel}</div>
+      <div class="kpi-label">📈 Your Sales — ${cycleLabel}</div>
       <div class="kpi-value" style="font-size:22px;color:var(--success);">${fmtINR(sheetMonthSales.monthSales)}</div>
-      <div class="kpi-sub">${sheetMonthSales.invoiceCount} invoice(s) this month</div>
+      <div class="kpi-sub">${sheetMonthSales.invoiceCount} invoice(s) · billing cycle (20th–19th)</div>
     </div>
     <div class="kpi-card" style="border-top:4px solid var(--danger);">
       <div class="kpi-label">👥 Students Pending</div>
